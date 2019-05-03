@@ -1,0 +1,58 @@
+﻿<Window x:Class="SAKD.Views.WorkSpace"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SAKD.Views"
+        mc:Ignorable="d"
+        Title="Жұмыс аймағы" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Label Content="Статус"/>
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
+                <TreeView>
+                    <TreeViewItem Header="Белсенді" IsExpanded="True">
+                        <TreeViewItem Header="1.Калькуляторды толтыру" Selected="TreeViewItem_OnSelected" Tag="1"/>
+                        <TreeViewItem Header="2.Құжаттарды басып шығару және қол қою 1" Selected="TreeViewItem_OnSelected" Tag="2"/>
+                        <TreeViewItem Header="3.Автоматты өңдеу" Selected="TreeViewItem_OnSelected" Tag="3"/>
+                        <TreeViewItem Header="4.Поведенческий скоринг" Selected="TreeViewItem_OnSelected" Tag="4"/>
+                        <TreeViewItem Header="5.Отчетті сұрау" Selected="TreeViewItem_OnSelected" Tag="5"/>
+                        <TreeViewItem Header="6.ПКБ. Рефинансирование" Selected="TreeViewItem_OnSelected" Tag="6"/>
+                        <TreeViewItem Header="7.Запрос отчета ГЦВП" Selected="TreeViewItem_OnSelected" Tag="7"/>
+                        <TreeViewItem Header="8.Скоринг 2" Selected="TreeViewItem_OnSelected" Tag="8"/>
+                        <TreeViewItem Header="8.1.Алдын ала есептеу" Selected="TreeViewItem_OnSelected" Tag="9"/>
+                        <TreeViewItem Header="9.Скоринг 3" Selected="TreeViewItem_OnSelected" Tag="10"/>
+                        <TreeViewItem Header="10.Тексеру" Selected="TreeViewItem_OnSelected" Tag="11"/>
+                        <TreeViewItem Header="11.УЛ шешім қабылдау" Selected="TreeViewItem_OnSelected" Tag="12"/>
+                        <TreeViewItem Header="12.Хабарлау және клиенттің шешімі" Selected="TreeViewItem_OnSelected" Tag="13"/>
+                        <TreeViewItem Header="13.Келісім шартты тіркеу" Selected="TreeViewItem_OnSelected" Tag="14"/>
+                        <TreeViewItem Header="14.Құжаттарды басып шығару және қол қою 2" Selected="TreeViewItem_OnSelected" Tag="15"/>
+                        <TreeViewItem Header="15.Акцепт" Selected="TreeViewItem_OnSelected" Tag="16"/>
+                        <TreeViewItem Header="16.Келісімшартты мақұлдау" Selected="TreeViewItem_OnSelected" Tag="17"/>
+                        <TreeViewItem Header="17.Несие досьесін қабылдау" Selected="TreeViewItem_OnSelected" Tag="18"/>
+                        <TreeViewItem Header="18.Жетілдіру" Selected="TreeViewItem_OnSelected" Tag="19"/>
+                        <TreeViewItem Header="ПКБ қатесімен" Selected="TreeViewItem_OnSelected" Tag="20"/>
+                        <TreeViewItem Header="ГЦВП қатесімен" Selected="TreeViewItem_OnSelected" Tag="21"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Алдын ала мақұлданғандар" IsExpanded="True">
+                        <TreeViewItem Header="Ыстық" Selected="TreeViewItem_OnSelected" Tag="22"/>
+                        <TreeViewItem Header="Жылы" Selected="TreeViewItem_OnSelected" Tag="23"/>
+                        <TreeViewItem Header="Салқын" Selected="TreeViewItem_OnSelected" Tag="24"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Аяқталғандар" IsExpanded="True">
+                        <TreeViewItem Header="Қабылданғандар" Selected="TreeViewItem_OnSelected" Tag="25"/>
+                        <TreeViewItem Header="Қайтарылғандар" Selected="TreeViewItem_OnSelected" Tag="26"/>
+                        <TreeViewItem Header="Клиент бас тартуы" Selected="TreeViewItem_OnSelected" Tag="27"/>
+                        <TreeViewItem Header="Үшінші бас тарту" Selected="TreeViewItem_OnSelected" Tag="28"/>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Барлығы" Selected="TreeViewItem_OnSelected" Tag="0"/>
+                </TreeView>
+            </ScrollViewer>
+        </StackPanel>
+        <GridSplitter Grid.Column="1" Grid.Row="0"></GridSplitter>
+    </Grid>
+</Window>
