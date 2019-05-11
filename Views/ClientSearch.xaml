@@ -1,0 +1,24 @@
+﻿<Window x:Class="SAKD.Views.ClientSearch"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Клиентті таңдау" Height="450" Width="800" WindowStyle="ToolWindow">
+    <Grid>
+        <StackPanel>
+            <Label Content="ИИН" Margin="5"/>
+            <TextBox Text="{Binding Iin}" Margin="5"/>
+            <Label Content="Тегі" Margin="5"/>
+            <TextBox Text="{Binding Lastname}" Margin="5"/>
+            <Label Content="Аты-жөні" Margin="5"/>
+            <TextBox Text="{Binding FirstName}" Margin="5"/>
+            <Label Content="Әкесінің аты" Margin="5"/>
+            <TextBox Text="{Binding PatronymicName}" Margin="5"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Ok" Margin="5" Height="30" Width="70"/>
+                <Button Click="ButtonBase_OnClick" Content="Болдырмау" Margin="5" Height="30" Width="70"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

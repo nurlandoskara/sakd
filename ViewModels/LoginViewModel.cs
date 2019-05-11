@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Input;
+using SAKD.Views;
 
 namespace SAKD.ViewModels
 {
@@ -41,6 +42,9 @@ namespace SAKD.ViewModels
                     return;
                 }
             }
+
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
         }
     }
 }

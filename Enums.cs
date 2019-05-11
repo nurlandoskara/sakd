@@ -78,34 +78,63 @@ namespace SAKD
         }
         public enum Status
         {
+            [Description("Барлығы")]
             All = 0,
+            [Description("Калькуляторды толтыру")]
             S1 = 1,
+            [Description("Құжаттарды басып шығару және қол қою 1")]
             S2 = 2,
+            [Description("Автоматты өңдеу")]
             S3 = 3,
+            [Description("Поведенческий скоринг")]
             S4 = 4,
+            [Description("Отчетті сұрау")]
             S5 = 5,
+            [Description("ПКБ. Рефинансирование")]
             S6 = 6,
+            [Description("Запрос отчета ГЦВП")]
             S7 = 7,
+            [Description("Скоринг 2")]
             S8 = 8,
+            [Description("Алдын ала есептеу")]
             S81 = 9,
+            [Description("Скоринг 3")]
             S9 = 10,
+            [Description("Тексеру")]
             S10 = 11,
+            [Description("УЛ шешім қабылдау")]
             S11 = 12,
+            [Description("Хабарлау және клиенттің шешімі")]
             S12 = 13,
+            [Description("Келісім шартты тіркеу")]
             S13 = 14,
+            [Description("Құжаттарды басып шығару және қол қою 2")]
             S14 = 15,
+            [Description("Акцепт")]
             S15 = 16,
+            [Description("Келісімшартты мақұлдау")]
             S16 = 17,
+            [Description("Несие досьесін қабылдау")]
             S17 = 18,
+            [Description("Жетілдіру")]
             S18 = 19,
+            [Description("ПКБ қатесімен")]
             Error1 = 20,
+            [Description("ГЦВП қатесімен")]
             Error2 = 21,
+            [Description("Ыстық")]
             Hot = 22,
+            [Description("Жылы")]
             Warm = 23,
+            [Description("Салқын")]
             Cold = 24,
+            [Description("Қабылданғандар")]
             Accepted = 25,
+            [Description("Қайтарылғандар")]
             Cancelled = 26,
+            [Description("Клиент бас тартуы")]
             CancelledByClient = 27,
+            [Description("Үшінші бас тарту")]
             CancelledByThird = 28
         }
     }

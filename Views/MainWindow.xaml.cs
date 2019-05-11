@@ -11,5 +11,11 @@ namespace SAKD.Views
         {
             InitializeComponent();
         }
+
+        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var workSpace = new WorkSpace();
+            workSpace.Show();
+        }
     }
 }

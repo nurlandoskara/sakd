@@ -65,6 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Command.cs" />
+    <Compile Include="EnumHelper.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Migrations\201905021235043_Initial.cs" />
     <Compile Include="Migrations\201905021235043_Initial.Designer.cs">
@@ -85,10 +86,12 @@
     <Compile Include="Models\ContactPerson.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Employment.cs" />
+    <Compile Include="Models\EnumListItem.cs" />
     <Compile Include="Models\Family.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\Industry.cs" />
     <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\Node.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\Parents.cs" />
     <Compile Include="Models\Region.cs" />
@@ -97,10 +100,19 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\BaseBindableViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ClientSearchViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\WorkSpaceViewModel.cs" />
+    <Compile Include="Views\ClientSearch.xaml.cs">
+      <DependentUpon>ClientSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WorkSpace.xaml.cs">
       <DependentUpon>WorkSpace.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\ClientSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CreditsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

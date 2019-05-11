@@ -14,7 +14,7 @@
         <Menu x:Name="MainMenu">
             <MenuItem Header="Файл"/>
             <MenuItem Header="Тапсырмалар">
-                <MenuItem Header="Кепілсіз несие"/>
+                <MenuItem Header="Кепілсіз несие" Click="MenuItem_OnClick"/>
                 <MenuItem Header="Алдын ала мақұлданған несие"/>
                 <MenuItem Header="Менің сұраныстарым"/>
             </MenuItem>
