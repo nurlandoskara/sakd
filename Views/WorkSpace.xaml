@@ -6,6 +6,10 @@
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Жұмыс аймағы" Height="450" Width="800">
+
+    <Controls:MetroWindow.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Controls:MetroWindow.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
@@ -34,10 +38,29 @@
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0">
             <Label Background="Gray" Content="{Binding StatusTitle}"/>
+            <Grid x:Name="SearchBar" Visibility="{Binding IsSearchVisible, Converter={StaticResource BoolToVis}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ComboBox Grid.Column="0" Grid.Row="0" ItemsSource="{Binding SearchByParams}" SelectedItem="{Binding SelectedSearchByParam}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Label Content="{Binding Name}"></Label>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBox Text="{Binding SearchText}" Grid.Column="1" Grid.Row="0"/>
+                <Button Grid.Column="1" Grid.Row="1" Command="{Binding FindCommand}"/>
+            </Grid>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="5,0,0,0">
             <Button Content="Қосу" Background="Green" Margin="5" Width="70"/>
-            <Button Content="Іздеу" Margin="5" Width="70"/>
+            <Button Content="Іздеу" Margin="5" Width="70" Command="{Binding SearchCommand}"/>
             <Button Content="Шығару" Margin="5" Width="70"/>
             <Button Content="Жаңалау" Margin="5" Width="70"/>
         </StackPanel>

@@ -4,6 +4,21 @@ namespace SAKD
 {
     public class Enums
     {
+        public enum Visibilities
+        {
+            None = 0,
+            Search = 1,
+
+        }
+
+        public enum SearchByParam
+        {
+            Iin = 0,
+            Branch = 1,
+            Lastname = 2,
+        }
+
+
         public enum FileType
         {
             OrderAnketa = 0,

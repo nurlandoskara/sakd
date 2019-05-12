@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 using SAKD.Models;
 
 namespace SAKD.ViewModels
@@ -9,6 +12,7 @@ namespace SAKD.ViewModels
     {
         private Node _selectedNode;
         private string _statusTitle;
+        private bool _isSearchVisible;
 
         public string StatusTitle
         {
@@ -28,9 +32,59 @@ namespace SAKD.ViewModels
             }
         }
 
+        public bool IsSearchVisible
+        {
+            get => _isSearchVisible;
+            set => SetProperty(ref _isSearchVisible, value);
+        }
+
+        public ObservableCollection<EnumListItem> SearchByParams { get; set; }
+        public EnumListItem SelectedSearchByParam { get; set; }
+        public string SearchText { get; set; }
+
+        public ICommand SearchCommand { get; set; }
+        public ICommand FindCommand { get; set; }
+
         public WorkSpaceViewModel()
         {
             SetUpMenu();
+            SearchCommand = new Command(Search, CanExecuteCommand);
+            FindCommand = new Command(Find, CanExecuteCommand);
+        }
+
+        private void Find(object parameter)
+        {
+            using (var db = new ModelContainer())
+            {
+                var orders = new List<Order>();
+                switch ((Enums.SearchByParam)SelectedSearchByParam.Int)
+                {
+                    case Enums.SearchByParam.Iin:
+                        orders = db.Orders.Where(x => x.Client.Iin.Contains(SearchText)).ToList();
+                        break;
+                    case Enums.SearchByParam.Branch:
+                        orders = db.Orders.Where(x => x.Branch.DisplayString.Contains(SearchText)).ToList();
+                        break;
+                    case Enums.SearchByParam.Lastname:
+                        orders = db.Orders.Where(x => x.Client.LastName.Contains(SearchText)).ToList();
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+
+        private void SwitchVisibilities(Enums.Visibilities visible)
+        {
+            IsSearchVisible = visible == Enums.Visibilities.Search;
+            StatusTitle = "Іздеу";
+        }
+
+        private void Search(object parameter)
+        {
+            SwitchVisibilities(Enums.Visibilities.Search);
+            SearchByParams = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.SearchByParam>());
         }
 
         public void SetUpMenu()
