@@ -10,7 +10,7 @@ namespace SAKD.Views
     /// <summary>
     /// Interaction logic for WorkSpace.xaml
     /// </summary>
-    public partial class WorkSpace : Window
+    public partial class WorkSpace
     {
         private readonly WorkSpaceViewModel _viewModel;
         public WorkSpace()

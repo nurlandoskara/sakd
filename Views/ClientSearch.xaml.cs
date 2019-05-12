@@ -6,7 +6,7 @@ namespace SAKD.Views
     /// <summary>
     /// Interaction logic for ClientSearch.xaml
     /// </summary>
-    public partial class ClientSearch : Window
+    public partial class ClientSearch
     {
         public ClientSearch()
         {

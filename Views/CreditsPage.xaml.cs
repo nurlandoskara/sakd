@@ -5,7 +5,7 @@ namespace SAKD.Views
     /// <summary>
     /// Interaction logic for CreditsPage.xaml
     /// </summary>
-    public partial class CreditsPage : Window
+    public partial class CreditsPage
     {
         public CreditsPage()
         {
