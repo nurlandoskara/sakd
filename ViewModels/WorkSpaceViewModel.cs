@@ -42,6 +42,8 @@ namespace SAKD.ViewModels
         public EnumListItem SelectedSearchByParam { get; set; }
         public string SearchText { get; set; }
 
+        public ObservableCollection<Order> Orders { get; set; }
+
         public ICommand SearchCommand { get; set; }
         public ICommand FindCommand { get; set; }
 
@@ -50,6 +52,10 @@ namespace SAKD.ViewModels
             SetUpMenu();
             SearchCommand = new Command(Search, CanExecuteCommand);
             FindCommand = new Command(Find, CanExecuteCommand);
+            using (var db = new ModelContainer())
+            {
+                Orders = new ObservableCollection<Order>(db.Orders.ToList());
+            }
         }
 
         private void Find(object parameter)

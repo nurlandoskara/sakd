@@ -57,6 +57,13 @@
                 <TextBox Text="{Binding SearchText}" Grid.Column="1" Grid.Row="0"/>
                 <Button Grid.Column="1" Grid.Row="1" Command="{Binding FindCommand}"/>
             </Grid>
+            <Grid x:Name="Orders">
+                <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ИИН" Binding="{Binding Path=Client.Iin}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="5,0,0,0">
             <Button Content="Қосу" Background="Green" Margin="5" Width="70"/>
