@@ -13,6 +13,7 @@ namespace SAKD.ViewModels
         private Node _selectedNode;
         private string _statusTitle;
         private bool _isSearchVisible;
+        private ObservableCollection<EnumListItem> _searchByParams;
 
         public string StatusTitle
         {
@@ -38,7 +39,12 @@ namespace SAKD.ViewModels
             set => SetProperty(ref _isSearchVisible, value);
         }
 
-        public ObservableCollection<EnumListItem> SearchByParams { get; set; }
+        public ObservableCollection<EnumListItem> SearchByParams
+        {
+            get => _searchByParams;
+            set => SetProperty(ref _searchByParams, value);
+        }
+
         public EnumListItem SelectedSearchByParam { get; set; }
         public string SearchText { get; set; }
 
@@ -62,14 +68,25 @@ namespace SAKD.ViewModels
         {
             using (var db = new ModelContainer())
             {
-                var orders = new List<Order>();
+                List<Order> orders;
                 switch ((Enums.SearchByParam)SelectedSearchByParam.Int)
                 {
                     case Enums.SearchByParam.Iin:
+                        if (SearchText.Length != 12)
+                        {
+                            MessageBox.Show("ИИН дұрыс емес");
+                        }
                         orders = db.Orders.Where(x => x.Client.Iin.Contains(SearchText)).ToList();
+                        if (orders.Any() && orders.Any(x =>
+                                x.Status != Enums.Status.Accepted || x.Status != Enums.Status.Cancelled &&
+                                x.Status != Enums.Status.CancelledByClient &&
+                                x.Status != Enums.Status.CancelledByThird))
+                        {
+                            MessageBox.Show("Клиентте аяқталмаған сұраныстар бар!");
+                        }
                         break;
                     case Enums.SearchByParam.Branch:
-                        orders = db.Orders.Where(x => x.Branch.DisplayString.Contains(SearchText)).ToList();
+                        orders = db.Orders.Where(x => x.Branch.Name.Contains(SearchText)).ToList();
                         break;
                     case Enums.SearchByParam.Lastname:
                         orders = db.Orders.Where(x => x.Client.LastName.Contains(SearchText)).ToList();
@@ -77,6 +94,8 @@ namespace SAKD.ViewModels
                     default:
                         throw new ArgumentOutOfRangeException();
                 }
+
+                Orders = new ObservableCollection<Order>(orders);
             }
         }
 

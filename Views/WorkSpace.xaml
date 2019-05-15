@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:converters="clr-namespace:SAKD.Converters"
         Title="Жұмыс аймағы" Height="450" Width="800">
 
     <Controls:MetroWindow.Resources>
@@ -55,12 +56,19 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <TextBox Text="{Binding SearchText}" Grid.Column="1" Grid.Row="0"/>
-                <Button Grid.Column="1" Grid.Row="1" Command="{Binding FindCommand}"/>
+                <Button Grid.Column="1" Grid.Row="1" Content="Іздеу" Command="{Binding FindCommand}"/>
             </Grid>
             <Grid x:Name="Orders">
                 <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="ИИН" Binding="{Binding Path=Client.Iin}"/>
+                        <DataGridTextColumn Header="Продукт кредитования" Binding="{Binding Product, Converter={converters:EnumDisplayNameConverter}}"/>
+                        <DataGridTextColumn Header="Филиал" Binding="{Binding Branch.Name}"/>
+                        <DataGridTextColumn Header="Несиелеу бағдарламасы" Binding="{Binding Program, Converter={converters:EnumDisplayNameConverter}}"/>
+                        <DataGridTextColumn Header="Тегі" Binding="{Binding Client.Lastname}"/>
+                        <DataGridTextColumn Header="Аты" Binding="{Binding Client.Firstname}"/>
+                        <DataGridTextColumn Header="Әкесінің аты" Binding="{Binding Client.PatronymicName}"/>
+                        <DataGridTextColumn Header="ИИН" Binding="{Binding Client.Iin}"/>
+                        <DataGridTextColumn Header="Құжат нөмірі" Binding="{Binding Client.Document.Number}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Security.Cryptography;
 
 namespace SAKD
 {
@@ -13,8 +14,11 @@ namespace SAKD
 
         public enum SearchByParam
         {
+            [Description("ИИН")]
             Iin = 0,
+            [Description("Филиал")]
             Branch = 1,
+            [Description("Тегі")]
             Lastname = 2,
         }
 
