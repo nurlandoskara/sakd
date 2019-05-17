@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using SAKD.Models;
+using SAKD.Views;
 
 namespace SAKD.ViewModels
 {
@@ -14,6 +15,7 @@ namespace SAKD.ViewModels
         private string _statusTitle;
         private bool _isSearchVisible;
         private ObservableCollection<EnumListItem> _searchByParams;
+        private ObservableCollection<Order> _orders;
 
         public string StatusTitle
         {
@@ -48,16 +50,40 @@ namespace SAKD.ViewModels
         public EnumListItem SelectedSearchByParam { get; set; }
         public string SearchText { get; set; }
 
-        public ObservableCollection<Order> Orders { get; set; }
+        public ObservableCollection<Order> Orders
+        {
+            get => _orders;
+            set => SetProperty(ref _orders, value);
+        }
 
         public ICommand SearchCommand { get; set; }
         public ICommand FindCommand { get; set; }
+        public ICommand AddCommand { get; set; }
 
         public WorkSpaceViewModel()
         {
             SetUpMenu();
             SearchCommand = new Command(Search, CanExecuteCommand);
             FindCommand = new Command(Find, CanExecuteCommand);
+            AddCommand = new Command(Add, CanExecuteCommand);
+        }
+
+        private void Add(object parameter)
+        {
+            var clientSearch = new ClientSearch();
+            clientSearch.ViewModel.OnClose += ClientSearchViewModel_OnClose;
+            clientSearch.ShowDialog();
+        }
+        private void ClientSearchViewModel_OnClose(object sender, CustomEventArgs.OnCloseFilterViewEventArgs args)
+        {
+            if (!(sender is ClientSearchViewModel vm)) return;
+            vm.OnClose -= ClientSearchViewModel_OnClose;
+            if (!args.IsApplied) return;
+            LoadOrders();
+        }
+
+        private void LoadOrders()
+        {
             using (var db = new ModelContainer())
             {
                 Orders = new ObservableCollection<Order>(db.Orders.ToList());
@@ -72,7 +98,7 @@ namespace SAKD.ViewModels
                 switch ((Enums.SearchByParam)SelectedSearchByParam.Int)
                 {
                     case Enums.SearchByParam.Iin:
-                        if (SearchText.Length != 12)
+                        if (SearchText?.Length != 12)
                         {
                             MessageBox.Show("ИИН дұрыс емес");
                         }

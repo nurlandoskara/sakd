@@ -1,4 +1,4 @@
-﻿using System;
+﻿using SAKD.ViewModels;
 using System.Windows;
 
 namespace SAKD.Views
@@ -8,9 +8,11 @@ namespace SAKD.Views
     /// </summary>
     public partial class ClientSearch
     {
+        public ClientSearchViewModel ViewModel { get; }
         public ClientSearch()
         {
             InitializeComponent();
+            DataContext = ViewModel = new ClientSearchViewModel(this);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

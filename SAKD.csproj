@@ -75,6 +75,7 @@
     </ApplicationDefinition>
     <Compile Include="Command.cs" />
     <Compile Include="Converters\EnumDisplayNameConverter.cs" />
+    <Compile Include="CustomEventArgs.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Migrations\201905021235043_Initial.cs" />
@@ -84,6 +85,18 @@
     <Compile Include="Migrations\201905151711508_BranchName.cs" />
     <Compile Include="Migrations\201905151711508_BranchName.Designer.cs">
       <DependentUpon>201905151711508_BranchName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905171751471_ClientBirthDate.cs" />
+    <Compile Include="Migrations\201905171751471_ClientBirthDate.Designer.cs">
+      <DependentUpon>201905171751471_ClientBirthDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905171756432_ClientAdditionalInfoNullable.cs" />
+    <Compile Include="Migrations\201905171756432_ClientAdditionalInfoNullable.Designer.cs">
+      <DependentUpon>201905171756432_ClientAdditionalInfoNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905171758250_ClientNullables.cs" />
+    <Compile Include="Migrations\201905171758250_ClientNullables.Designer.cs">
+      <DependentUpon>201905171758250_ClientNullables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContainer.cs" />
@@ -177,6 +190,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905151711508_BranchName.resx">
       <DependentUpon>201905151711508_BranchName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905171751471_ClientBirthDate.resx">
+      <DependentUpon>201905171751471_ClientBirthDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905171756432_ClientAdditionalInfoNullable.resx">
+      <DependentUpon>201905171756432_ClientAdditionalInfoNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905171758250_ClientNullables.resx">
+      <DependentUpon>201905171758250_ClientNullables.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
