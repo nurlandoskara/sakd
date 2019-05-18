@@ -1,8 +1,7 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-using SAKD.Models;
+﻿using SAKD.Models;
 using SAKD.Views;
+using System;
+using System.Linq;
 
 namespace SAKD.ViewModels
 {
@@ -28,9 +27,8 @@ namespace SAKD.ViewModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string PatronymicName { get; set; }
-        public ICommand OkCommand { get; set; }
 
-        public event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
+        public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
 
         public ClientSearchViewModel(ClientSearch view)
         {
@@ -64,7 +62,8 @@ namespace SAKD.ViewModels
                 {
                     Status = Enums.Status.S1,
                     Client = _client,
-                    BranchId = 1
+                    BranchId = 1,
+                    Date = DateTime.Now
                 });
                 db.SaveChanges();
             }

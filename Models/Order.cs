@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SAKD.Models
 {
     public class Order: BaseDbObject
     {
+        public DateTime Date { get; set; }
         public Enums.Status Status { get; set; }
         public int BranchId { get; set; }
         public Branch Branch { get; set; }
@@ -13,6 +15,7 @@ namespace SAKD.Models
         public Enums.Program Program { get; set; }
         public Enums.Method Method { get; set; }
         public Enums.Purpose Purpose { get; set; }
+        public Enums.Currency Currency { get; set; }
         public int Months { get; set; }
         public int RequestSum { get; set; }
         public ICollection<AdditionalService> AdditionalServices { get; set; }

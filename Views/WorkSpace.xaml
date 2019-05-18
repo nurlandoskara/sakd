@@ -59,7 +59,7 @@
                 <Button Grid.Column="1" Grid.Row="1" Content="Іздеу" Command="{Binding FindCommand}"/>
             </Grid>
             <Grid x:Name="Orders">
-                <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="True">
+                <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="True" SelectedItem="{Binding Path=SelectedOrder}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Продукт кредитования" Binding="{Binding Product, Converter={converters:EnumDisplayNameConverter}}"/>
                         <DataGridTextColumn Header="Филиал" Binding="{Binding Branch.Name}"/>
@@ -76,7 +76,7 @@
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal" Margin="5,0,0,0">
             <Button Content="Қосу" Background="Green" Margin="5" Width="70" Command="{Binding AddCommand}"/>
             <Button Content="Іздеу" Margin="5" Width="70" Command="{Binding SearchCommand}"/>
-            <Button Content="Өзгерту" Margin="5" Width="70"/>
+            <Button Content="Өзгерту" Margin="5" Width="70" Command="{Binding EditCommand}"/>
             <Button Content="Шығару" Margin="5" Width="70"/>
             <Button Content="Жаңалау" Margin="5" Width="70"/>
         </StackPanel>

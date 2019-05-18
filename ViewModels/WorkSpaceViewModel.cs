@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
@@ -30,8 +31,10 @@ namespace SAKD.ViewModels
             get => _selectedNode;
             set
             {
-                StatusTitle = value?.Name;
+                if(value == null) return;
+                StatusTitle = value.Name;
                 SetProperty(ref _selectedNode, value);
+                LoadOrders(value.Int);
             }
         }
 
@@ -56,9 +59,12 @@ namespace SAKD.ViewModels
             set => SetProperty(ref _orders, value);
         }
 
+        public Order SelectedOrder { get; set; }
+
         public ICommand SearchCommand { get; set; }
         public ICommand FindCommand { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand EditCommand { get; set; }
 
         public WorkSpaceViewModel()
         {
@@ -66,27 +72,36 @@ namespace SAKD.ViewModels
             SearchCommand = new Command(Search, CanExecuteCommand);
             FindCommand = new Command(Find, CanExecuteCommand);
             AddCommand = new Command(Add, CanExecuteCommand);
+            EditCommand = new Command(Edit, CanExecuteCommand);
+        }
+
+        private void Edit(object parameter)
+        {
+            if(SelectedOrder == null) return;
+            var anketa = new Anketa(SelectedOrder);
+            anketa.ViewModel.OnClose += ViewModel_OnClose;
+            anketa.ShowDialog();
         }
 
         private void Add(object parameter)
         {
             var clientSearch = new ClientSearch();
-            clientSearch.ViewModel.OnClose += ClientSearchViewModel_OnClose;
+            clientSearch.ViewModel.OnClose += ViewModel_OnClose;
             clientSearch.ShowDialog();
         }
-        private void ClientSearchViewModel_OnClose(object sender, CustomEventArgs.OnCloseFilterViewEventArgs args)
+        private void ViewModel_OnClose(object sender, CustomEventArgs.OnCloseFilterViewEventArgs args)
         {
-            if (!(sender is ClientSearchViewModel vm)) return;
-            vm.OnClose -= ClientSearchViewModel_OnClose;
+            if (!(sender is BaseViewModel vm)) return;
+            vm.OnClose -= ViewModel_OnClose;
             if (!args.IsApplied) return;
-            LoadOrders();
+            LoadOrders(SelectedNode.Int);
         }
 
-        private void LoadOrders()
+        private void LoadOrders(int status)
         {
             using (var db = new ModelContainer())
             {
-                Orders = new ObservableCollection<Order>(db.Orders.ToList());
+                Orders = new ObservableCollection<Order>(db.Orders.Where(x => (int)x.Status == status).Include(x => x.Branch).Include(x => x.Client).ToList());
             }
         }
 

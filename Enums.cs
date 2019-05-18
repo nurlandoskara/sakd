@@ -5,11 +5,16 @@ namespace SAKD
 {
     public class Enums
     {
+        public enum Currency
+        {
+            Tenge = 0,
+            Rubl = 1,
+            Dollar = 3
+        }
         public enum Visibilities
         {
             None = 0,
             Search = 1,
-
         }
 
         public enum SearchByParam
