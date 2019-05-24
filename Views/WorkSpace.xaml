@@ -21,9 +21,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,5,0">
+        <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,5,0" Background="#FFD1C8C8">
             <Label Content="Статус" Background="Gray"/>
-            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+            <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" BorderBrush="#FF090909">
                 <TreeView x:Name="TreeView" ItemsSource="{Binding Nodes}" SelectedItemChanged="TreeView_OnSelectedItemChanged">
                     <TreeView.ItemContainerStyle>
                         <Style TargetType="{x:Type TreeViewItem}">
@@ -60,7 +60,7 @@
                 <Button Grid.Column="1" Grid.Row="1" Content="Іздеу" Command="{Binding FindCommand}"/>
             </Grid>
             <Grid x:Name="Orders">
-                <DataGrid ItemsSource="{Binding Orders}" AutoGenerateColumns="True" SelectedItem="{Binding Path=SelectedOrder}">
+                <DataGrid ItemsSource="{Binding Orders}" SelectedItem="{Binding Path=SelectedOrder}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Продукт кредитования" Binding="{Binding Product, Converter={converters:EnumDisplayNameConverter}}"/>
                         <DataGridTextColumn Header="Филиал" Binding="{Binding Branch.Name}"/>

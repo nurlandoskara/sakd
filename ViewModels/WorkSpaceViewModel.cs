@@ -92,6 +92,7 @@ namespace SAKD.ViewModels
             { 
                 var clientSearch = new ClientSearch(context);
                 clientSearch.ViewModel.OnClose += ViewModel_OnClose;
+                clientSearch.ShowDialog();
             }
         }
         private void ViewModel_OnClose(object sender, CustomEventArgs.OnCloseFilterViewEventArgs args)

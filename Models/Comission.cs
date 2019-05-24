@@ -5,7 +5,7 @@
         public int OrderId { get; set; }
         public virtual Order Order { get; set; }
         public int ComissionTypeId { get; set; }
-        public ComissionType ComissionType { get; set; }
-        public double Total => Order.RequestSum * ComissionType.ComissionPercent / 100;
+        public virtual ComissionType ComissionType { get; set; }
+        public double Total => ComissionType.ComissionPercent / 100;
     }
 }

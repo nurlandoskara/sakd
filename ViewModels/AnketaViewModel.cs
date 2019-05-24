@@ -14,7 +14,7 @@ namespace SAKD.ViewModels
         private ObservableCollection<EnumListItem> _methods;
         private ObservableCollection<EnumListItem> _purposes;
         private ObservableCollection<EnumListItem> _currencies;
-        private ModelContainer _context;
+        private readonly ModelContainer _context;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
 
@@ -55,6 +55,8 @@ namespace SAKD.ViewModels
         }
         public EnumListItem SelectedCurrency { get; set; }
 
+        public ObservableCollection<Comission> Comissions { get; set; }
+
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
         {
             _view = view;
@@ -70,6 +72,7 @@ namespace SAKD.ViewModels
             SelectedPurpose = Purposes.FirstOrDefault(x => x.Int == (int) Order.Purpose);
             Currencies = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Currency>());
             SelectedCurrency = Currencies.FirstOrDefault(x => x.Int == (int) Order.Currency);
+            Comissions = new ObservableCollection<Comission>(Order.Comissions);
             OkCommand = new Command(Save, CanExecuteCommand);
         }
 
@@ -87,6 +90,7 @@ namespace SAKD.ViewModels
             Order.Product = (Enums.Product)SelectedProduct.Int;
             Order.Currency = (Enums.Currency)SelectedCurrency.Int;
             Order.Method = (Enums.Method)SelectedMethod.Int;
+            Order.Comissions = Comissions.ToList();
             _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,
