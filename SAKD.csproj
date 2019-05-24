@@ -102,6 +102,14 @@
     <Compile Include="Migrations\201905181824053_OrdersChange.Designer.cs">
       <DependentUpon>201905181824053_OrdersChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905190958457_AddComissions.cs" />
+    <Compile Include="Migrations\201905190958457_AddComissions.Designer.cs">
+      <DependentUpon>201905190958457_AddComissions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905191004581_ComissionPercent.cs" />
+    <Compile Include="Migrations\201905191004581_ComissionPercent.Designer.cs">
+      <DependentUpon>201905191004581_ComissionPercent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContainer.cs" />
     <Compile Include="Models\AdditionalInfo.cs" />
@@ -114,6 +122,7 @@
     <Compile Include="Models\City.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\ComissionType.cs" />
     <Compile Include="Models\ContactPerson.cs" />
     <Compile Include="Models\Document.cs" />
     <Compile Include="Models\Employment.cs" />
@@ -124,6 +133,7 @@
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Comission.cs" />
     <Compile Include="Models\Parents.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Service.cs" />
@@ -214,6 +224,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905181824053_OrdersChange.resx">
       <DependentUpon>201905181824053_OrdersChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905190958457_AddComissions.resx">
+      <DependentUpon>201905190958457_AddComissions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905191004581_ComissionPercent.resx">
+      <DependentUpon>201905191004581_ComissionPercent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

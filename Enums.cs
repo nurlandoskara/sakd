@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Security.Cryptography;
 
 namespace SAKD
 {
@@ -7,8 +6,11 @@ namespace SAKD
     {
         public enum Currency
         {
+            [Description("Тенге")]
             Tenge = 0,
+            [Description("Рубль")]
             Rubl = 1,
+            [Description("Доллар")]
             Dollar = 3
         }
         public enum Visibilities
@@ -75,13 +77,17 @@ namespace SAKD
         }
         public enum Method
         {
+            [Description("Аннуитивті")]
             Annual = 0,
+            [Description("Дифференциалды")]
             Difference = 1
         }
 
         public enum Purpose
         {
+            [Description("Тұтынушы")]
             Consume = 0,
+            [Description("Қайтадан қаржыландыру")]
             Refinance = 1
         }
         public enum Product

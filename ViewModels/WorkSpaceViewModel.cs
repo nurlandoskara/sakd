@@ -78,16 +78,21 @@ namespace SAKD.ViewModels
         private void Edit(object parameter)
         {
             if(SelectedOrder == null) return;
-            var anketa = new Anketa(SelectedOrder);
-            anketa.ViewModel.OnClose += ViewModel_OnClose;
-            anketa.ShowDialog();
+            using (var context = new ModelContainer())
+            {
+                var selectedItem = context.Orders.FirstOrDefault(x => x.Id == SelectedOrder.Id);
+                var anketa = new Anketa(selectedItem, context);
+                anketa.ViewModel.OnClose += ViewModel_OnClose;
+                anketa.ShowDialog();
+            }
         }
 
-        private void Add(object parameter)
-        {
-            var clientSearch = new ClientSearch();
-            clientSearch.ViewModel.OnClose += ViewModel_OnClose;
-            clientSearch.ShowDialog();
+        private void Add(object parameter) {
+            using (var context = new ModelContainer())
+            { 
+                var clientSearch = new ClientSearch(context);
+                clientSearch.ViewModel.OnClose += ViewModel_OnClose;
+            }
         }
         private void ViewModel_OnClose(object sender, CustomEventArgs.OnCloseFilterViewEventArgs args)
         {
@@ -101,7 +106,9 @@ namespace SAKD.ViewModels
         {
             using (var db = new ModelContainer())
             {
-                Orders = new ObservableCollection<Order>(db.Orders.Where(x => (int)x.Status == status).Include(x => x.Branch).Include(x => x.Client).ToList());
+                Orders = new ObservableCollection<Order>(db.Orders.Where(x => (int) x.Status == status)
+                    .Include(x => x.Branch).Include(x => x.Client).Include(x => x.Comissions)
+                    .Include(x => x.Comissions.Select(y => y.ComissionType)).ToList());
             }
         }
 
@@ -184,6 +191,7 @@ namespace SAKD.ViewModels
                 Int = 0
             };
             Nodes.Add(node);
+            SelectedNode = Nodes.FirstOrDefault(x => x.Int == 1);
         }
     }
 }

@@ -21,5 +21,6 @@ namespace SAKD.Models
         public ICollection<AdditionalService> AdditionalServices { get; set; }
         public string Photo { get; set; }
         public ICollection<File> Files { get; set; }
+        public ICollection<Comission> Comissions { get; set; }
     }
 }

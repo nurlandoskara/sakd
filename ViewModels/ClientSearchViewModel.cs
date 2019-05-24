@@ -10,6 +10,7 @@ namespace SAKD.ViewModels
         private readonly ClientSearch _view;
         private string _iin;
         private Client _client;
+        private ModelContainer _context;
 
         public string Iin
         {
@@ -30,23 +31,21 @@ namespace SAKD.ViewModels
 
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
 
-        public ClientSearchViewModel(ClientSearch view)
+        public ClientSearchViewModel(ClientSearch view, ModelContainer context)
         {
             _view = view;
+            _context = context;
             OkCommand = new Command(Ok, CanExecuteCommand);
         }
 
         private void Find(string iin)
         {
-            using (var db = new ModelContainer())
+            _client = _context.Clients.FirstOrDefault(x => x.Iin == iin);
+            if (_client != null)
             {
-                _client = db.Clients.FirstOrDefault(x => x.Iin == iin);
-                if (_client != null)
-                {
-                    FirstName = _client.FirstName;
-                    LastName = _client.LastName;
-                    PatronymicName = _client.PatronymicName;
-                }
+                FirstName = _client.FirstName;
+                LastName = _client.LastName;
+                PatronymicName = _client.PatronymicName;
             }
         }
 
@@ -56,17 +55,21 @@ namespace SAKD.ViewModels
             {
                 Iin = Iin
             };
-            using (var db = new ModelContainer())
-            {
-                db.Orders.Add(new Order
+                var order = new Order
                 {
                     Status = Enums.Status.S1,
                     Client = _client,
                     BranchId = 1,
-                    Date = DateTime.Now
-                });
-                db.SaveChanges();
-            }
+                    Date = DateTime.Now,
+                };
+                var comission = new Comission
+                {
+                    Order = order, 
+                    ComissionTypeId = 1
+                };
+                _context.Orders.Add(order);
+                _context.Comissions.Add(comission);
+                _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,
                 new CustomEventArgs.OnCloseFilterViewEventArgs {IsApplied = true});

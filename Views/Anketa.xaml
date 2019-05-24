@@ -4,6 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 WindowState="Maximized"
                  mc:Ignorable="d"
         WindowStyle="ToolWindow"
         Title="Anketa" Height="450" Width="800">
@@ -43,35 +44,65 @@
                         </Grid>
                     </GroupBox>
                     <GroupBox Header="Несие туралы жалпы мәліметтер">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40*"/>
-                                    <ColumnDefinition Width="60*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="60*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
                                 <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
-                                    <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
-                                <Label Grid.Column="0" Grid.Row="0" Content="*Несиелеу тауары"/>
-                                <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}"/>
-                                <Label Grid.Column="0" Grid.Row="1" Content="*Несиелеу бағдарламасы"/>
-                                <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Programs}" SelectedItem="{Binding SelectedProgram}"/>
+                            <Label Grid.Column="0" Grid.Row="0" Content="*Несиелеу тауары"/>
+                            <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Products}" SelectedItem="{Binding SelectedProduct}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Label Content="{Binding Name}"></Label>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <Label Grid.Column="0" Grid.Row="1" Content="*Несиелеу бағдарламасы"/>
+                            <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Programs}" SelectedItem="{Binding SelectedProgram}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Content="{Binding Name}"></Label>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                                </ComboBox>
                                 <Label Grid.Column="0" Grid.Row="2" Content="*Төлем әдісі"/>
-                                <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Methods}" SelectedItem="{Binding SelectedMethod}"/>
+                                <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Methods}" SelectedItem="{Binding SelectedMethod}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"></Label>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                    </ComboBox>
                                 <Label Grid.Column="0" Grid.Row="3" Content="*Несиелеу мақсаты"/>
-                                <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Purposes}" SelectedItem="{Binding SelectedPurpose}"/>
+                                <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Purposes}" SelectedItem="{Binding SelectedPurpose}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"></Label>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                    </ComboBox>
                                 <Label Grid.Column="0" Grid.Row="4" Content="Несие валютасы"/>
-                                <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Currencies}" SelectedItem="{Binding SelectedCurrency}" IsReadOnly="True"/>
+                                <ComboBox Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Currencies}" SelectedItem="{Binding SelectedCurrency}" IsReadOnly="True">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"></Label>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                    </ComboBox>
                                 <Label Grid.Column="0" Grid.Row="5" Content="*Мерзімі"/>
                                 <TextBox Grid.Column="1" Grid.Row="5" Text="{Binding Order.Months}"/>
                                 <Label Grid.Column="0" Grid.Row="6" Content="*Сұраныс сомасы"/>
@@ -83,10 +114,23 @@
                                 <Label Grid.Column="0" Grid.Row="9" Content="Cashback сомасы"/>
                                 <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding CashbackSum}"/>
                                 <Label Grid.Column="0" Grid.Row="10" Content="Комиссиялар"/>
-                            <DataGrid Grid.Column="1" Grid.Row="10" ItemsSource="{Binding Comissions}"/>
+                            <DataGrid Grid.Column="1" Grid.Row="10" ItemsSource="{Binding Order.Comissions}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Атауы" Binding="{Binding ComissionType.Name}"/>
+                                    <DataGridTextColumn Header="Бір рет қана" Binding="{Binding ComissionType.SingleTime}"/>
+                                    <DataGridTextColumn Header="Пайызбен" Binding="{Binding ComissionType.Percent}"/>
+                                    <DataGridTextColumn Header="Дата сомасы" Binding="{Binding Total}"/>
+                                    <DataGridTextColumn Header="Өзгертілген күні" Binding="{Binding ComissionType.DateModified}"/>
+                                </DataGrid.Columns>
+                                </DataGrid>
                         </Grid>
                         </GroupBox>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="Ok" Margin="5" Height="30" Width="70" Command="{Binding OkCommand}"/>
+                        <Button Click="ButtonBase_OnClick" Content="Болдырмау" Margin="5" Height="30" Width="70"/>
                     </StackPanel>
+                </StackPanel>
             </mah:MetroTabItem>
         </mah:MetroTabControl>
     </Grid>

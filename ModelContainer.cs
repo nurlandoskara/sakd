@@ -43,5 +43,7 @@ namespace SAKD
         public virtual DbSet<Service> Services { get; set; }
         public virtual DbSet<SocialStatus> SocialStatuses { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<ComissionType> ComissionTypes { get; set; }
+        public virtual DbSet<Comission> Comissions { get; set; }
     }
 }

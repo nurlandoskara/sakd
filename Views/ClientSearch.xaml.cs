@@ -9,10 +9,10 @@ namespace SAKD.Views
     public partial class ClientSearch
     {
         public ClientSearchViewModel ViewModel { get; }
-        public ClientSearch()
+        public ClientSearch(ModelContainer context)
         {
             InitializeComponent();
-            DataContext = ViewModel = new ClientSearchViewModel(this);
+            DataContext = ViewModel = new ClientSearchViewModel(this, context);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
