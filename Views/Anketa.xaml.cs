@@ -20,5 +20,13 @@ namespace SAKD.Views
         {
             Close();
         }
+
+        private WebCam _webCam;
+        private void PhotoButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _webCam = new WebCam();
+            _webCam.InitializeWebCam(ref imgVideo);
+            _webCam.Start();
+        }
     }
 }

@@ -146,6 +146,25 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
+                        <GroupBox Header="Жеке мәліметтер">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="60*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Content="ИИН" Grid.Row="0" Grid.Column="0"/>
+                                <TextBox Text="{Binding Iin}" Grid.Row="0" Grid.Column="1"/>
+                                <Label Content="Фотография" Grid.Row="1" Grid.Column="0"/>
+                                <Image x:Name="imgVideo" Source="{Binding Photo}" Grid.Row="1" Grid.Column="1" Width="100" Height="180"/>
+                                <Button Content="Photo" Click="PhotoButton_OnClick"></Button>
+                                <Button Content="Фото жасау" Command="{Binding TakePhoto}" Grid.Row="2" Grid.Column="1"/>
+                            </Grid>
+                        </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
             </mah:MetroTabItem>

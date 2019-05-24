@@ -50,8 +50,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\ControlzEx.3.0.2.4\lib\net462\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -63,6 +65,9 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WebCam_Capture, Version=1.0.2395.24959, Culture=neutral">
+      <HintPath>packages\Easywebcam.1.0.0\lib\WebCam_Capture.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
@@ -78,6 +83,7 @@
     <Compile Include="CustomEventArgs.cs" />
     <Compile Include="EnumHelper.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Migrations\201905021235043_Initial.cs" />
     <Compile Include="Migrations\201905021235043_Initial.Designer.cs">
       <DependentUpon>201905021235043_Initial.cs</DependentUpon>
@@ -162,6 +168,7 @@
     <Compile Include="Views\WorkSpace.xaml.cs">
       <DependentUpon>WorkSpace.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WebCam.cs" />
     <Page Include="Views\AddService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -60,6 +60,7 @@ namespace SAKD.ViewModels
         public ObservableCollection<Comission> Comissions { get; set; }
         public ICommand AddServiceCommand { get; set; }
         public ICommand EditServiceCommand { get; set; }
+        public ICommand TakeCommand { get; set; }
 
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
         {
@@ -81,6 +82,11 @@ namespace SAKD.ViewModels
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
             EditServiceCommand = new Command(EditService, CanExecuteCommand);
+            TakeCommand = new Command(TakePhoto, CanExecuteCommand);
+        }
+
+        private void TakePhoto(object parameter)
+        {
         }
 
         private void EditService(object parameter)
