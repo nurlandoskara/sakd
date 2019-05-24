@@ -110,6 +110,10 @@
     <Compile Include="Migrations\201905191004581_ComissionPercent.Designer.cs">
       <DependentUpon>201905191004581_ComissionPercent.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905241714571_AdditionalService.cs" />
+    <Compile Include="Migrations\201905241714571_AdditionalService.Designer.cs">
+      <DependentUpon>201905241714571_AdditionalService.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContainer.cs" />
     <Compile Include="Models\AdditionalInfo.cs" />
@@ -139,12 +143,16 @@
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\SocialStatus.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\AddServiceViewModel.cs" />
     <Compile Include="ViewModels\AnketaViewModel.cs" />
     <Compile Include="ViewModels\BaseBindableViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ClientSearchViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\WorkSpaceViewModel.cs" />
+    <Compile Include="Views\AddService.xaml.cs">
+      <DependentUpon>AddService.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Anketa.xaml.cs">
       <DependentUpon>Anketa.xaml</DependentUpon>
     </Compile>
@@ -154,6 +162,10 @@
     <Compile Include="Views\WorkSpace.xaml.cs">
       <DependentUpon>WorkSpace.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\AddService.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Anketa.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905191004581_ComissionPercent.resx">
       <DependentUpon>201905191004581_ComissionPercent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905241714571_AdditionalService.resx">
+      <DependentUpon>201905241714571_AdditionalService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

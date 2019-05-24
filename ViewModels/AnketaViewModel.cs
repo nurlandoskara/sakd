@@ -3,6 +3,7 @@ using SAKD.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 
 namespace SAKD.ViewModels
 {
@@ -17,6 +18,7 @@ namespace SAKD.ViewModels
         private readonly ModelContainer _context;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
+        public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
 
         public ObservableCollection<EnumListItem> Products
         {
@@ -56,6 +58,8 @@ namespace SAKD.ViewModels
         public EnumListItem SelectedCurrency { get; set; }
 
         public ObservableCollection<Comission> Comissions { get; set; }
+        public ICommand AddServiceCommand { get; set; }
+        public ICommand EditServiceCommand { get; set; }
 
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
         {
@@ -73,7 +77,21 @@ namespace SAKD.ViewModels
             Currencies = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Currency>());
             SelectedCurrency = Currencies.FirstOrDefault(x => x.Int == (int) Order.Currency);
             Comissions = new ObservableCollection<Comission>(Order.Comissions);
+            AdditionalServices = new ObservableCollection<AdditionalService>(Order.AdditionalServices);
             OkCommand = new Command(Save, CanExecuteCommand);
+            AddServiceCommand = new Command(AddService, CanExecuteCommand);
+            EditServiceCommand = new Command(EditService, CanExecuteCommand);
+        }
+
+        private void EditService(object parameter)
+        {
+            
+        }
+
+        private void AddService(object parameter)
+        {
+            var view = new AddService(AdditionalServices);
+            view.ShowDialog();
         }
 
         private void Save(object parameter)
@@ -91,6 +109,7 @@ namespace SAKD.ViewModels
             Order.Currency = (Enums.Currency)SelectedCurrency.Int;
             Order.Method = (Enums.Method)SelectedMethod.Int;
             Order.Comissions = Comissions.ToList();
+            Order.AdditionalServices = AdditionalServices.ToList();
             _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,

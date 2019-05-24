@@ -10,7 +10,7 @@ namespace SAKD.ViewModels
         private readonly ClientSearch _view;
         private string _iin;
         private Client _client;
-        private ModelContainer _context;
+        private readonly ModelContainer _context;
 
         public string Iin
         {

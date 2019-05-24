@@ -18,7 +18,7 @@ namespace SAKD.Views
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }
