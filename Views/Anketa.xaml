@@ -119,7 +119,7 @@
                                 <Label Grid.Column="0" Grid.Row="9" Content="Cashback сомасы"/>
                                 <TextBox Grid.Column="1" Grid.Row="9" Text="{Binding CashbackSum}"/>
                                 <Label Grid.Column="0" Grid.Row="10" Content="Комиссиялар"/>
-                                <DataGrid Grid.Column="1" Grid.Row="10" AutoGenerateColumns="False" ItemsSource="{Binding Comissions}">
+                                <DataGrid Style="{StaticResource AzureDataGrid}" Grid.Column="1" Grid.Row="10" AutoGenerateColumns="False" ItemsSource="{Binding Comissions}">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Атауы" Binding="{Binding ComissionType.Name}"/>
                                         <DataGridTextColumn Header="Бір рет қана" Binding="{Binding ComissionType.SingleTime}"/>
@@ -132,7 +132,7 @@
                         </GroupBox>
                         <GroupBox Header="Қосымша қызметтер">
                             <StackPanel>
-                                <DataGrid ItemsSource="{Binding AdditionalServices}" AutoGenerateColumns="False">
+                                <DataGrid  Style="{StaticResource AzureDataGrid}" ItemsSource="{Binding AdditionalServices}" AutoGenerateColumns="False">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Код" Binding="{Binding Service.Code}"/>
                                         <DataGridTextColumn Header="Қызмет атауы" Binding="{Binding Service.Name}"/>
@@ -141,8 +141,8 @@
                                     </DataGrid.Columns>
                                 </DataGrid>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button Content="Қосу" Command="{Binding AddServiceCommand}"/>
-                                    <Button Content="Өзгерту" Command="{Binding EditServiceCommand}"/>
+                                    <Button Content="Қосу" Margin="5" Width="120" Command="{Binding AddServiceCommand}"/>
+                                    <Button Content="Өзгерту" Margin="5" Width="120" Command="{Binding EditServiceCommand}"/>
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>

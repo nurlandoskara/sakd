@@ -60,7 +60,7 @@
                 <Button Grid.Column="1" Grid.Row="1" Content="Іздеу" Command="{Binding FindCommand}"/>
             </Grid>
             <Grid x:Name="Orders">
-                <DataGrid ItemsSource="{Binding Orders}" SelectedItem="{Binding Path=SelectedOrder}">
+                <DataGrid ItemsSource="{Binding Orders}"  Style="{StaticResource AzureDataGrid}" SelectedItem="{Binding Path=SelectedOrder}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Продукт кредитования" Binding="{Binding Product, Converter={converters:EnumDisplayNameConverter}}"/>
                         <DataGridTextColumn Header="Филиал" Binding="{Binding Branch.Name}"/>
