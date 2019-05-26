@@ -96,6 +96,10 @@
     <Compile Include="Migrations\201905261840572_DocumentDate.Designer.cs">
       <DependentUpon>201905261840572_DocumentDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905261916367_Empty.cs" />
+    <Compile Include="Migrations\201905261916367_Empty.Designer.cs">
+      <DependentUpon>201905261916367_Empty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContainer.cs" />
     <Compile Include="Models\AdditionalInfo.cs" />
@@ -217,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905261840572_DocumentDate.resx">
       <DependentUpon>201905261840572_DocumentDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261916367_Empty.resx">
+      <DependentUpon>201905261916367_Empty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
