@@ -54,7 +54,9 @@ namespace SAKD.ViewModels
             if(_client == null) _client = new Client
             {
                 Iin = Iin,
-                Document = new Document()
+                Document = new Document(),
+                RegistrationAddress = new Address(),
+                LivingAddress = new Address()
             };
             var order = new Order
                 {

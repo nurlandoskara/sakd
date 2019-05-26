@@ -88,6 +88,14 @@
     <Compile Include="Migrations\201905261144490_Initial.Designer.cs">
       <DependentUpon>201905261144490_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905261839018_Address.cs" />
+    <Compile Include="Migrations\201905261839018_Address.Designer.cs">
+      <DependentUpon>201905261839018_Address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905261840572_DocumentDate.cs" />
+    <Compile Include="Migrations\201905261840572_DocumentDate.Designer.cs">
+      <DependentUpon>201905261840572_DocumentDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContainer.cs" />
     <Compile Include="Models\AdditionalInfo.cs" />
@@ -116,6 +124,7 @@
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\AddAddressViewModel.cs" />
     <Compile Include="ViewModels\AddServiceViewModel.cs" />
     <Compile Include="ViewModels\AnketaViewModel.cs" />
     <Compile Include="ViewModels\BaseBindableViewModel.cs" />
@@ -123,6 +132,9 @@
     <Compile Include="ViewModels\ClientSearchViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\WorkSpaceViewModel.cs" />
+    <Compile Include="Views\AddAddress.xaml.cs">
+      <DependentUpon>AddAddress.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddService.xaml.cs">
       <DependentUpon>AddService.xaml</DependentUpon>
     </Compile>
@@ -136,6 +148,10 @@
       <DependentUpon>WorkSpace.xaml</DependentUpon>
     </Compile>
     <Compile Include="WebCam.cs" />
+    <Page Include="Views\AddAddress.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AddService.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,6 +211,12 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201905261144490_Initial.resx">
       <DependentUpon>201905261144490_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261839018_Address.resx">
+      <DependentUpon>201905261839018_Address.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905261840572_DocumentDate.resx">
+      <DependentUpon>201905261840572_DocumentDate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

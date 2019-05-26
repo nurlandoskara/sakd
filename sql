@@ -3,3 +3,9 @@ insert into ComissionTypes(name, SingleTime, DateModified, ComissionPercent) val
 insert into services(name, code) values(N'Қардылық қорғау',N'0001')
 
 insert into Citizenships(code, name) values(398, N'Қазақстан Республикасы')
+insert into regions(name) values(N'БҚО')
+insert into areas(name, RegionId) values(N'Сырым',1)
+insert into areas(name, RegionId) values(N'Бөрлі',1)
+insert into areas(name, RegionId) values(N'Зеленов',1)
+insert into areas(name, RegionId) values(N'Орал қаласы',1)
+insert into cities(name, AreaId) values(N'Орал',4)

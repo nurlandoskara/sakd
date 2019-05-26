@@ -28,6 +28,12 @@ namespace SAKD.ViewModels
         private ObservableCollection<EnumListItem> _educations;
         private ObservableCollection<EnumListItem> _documentTypes;
         private ObservableCollection<EnumListItem> _documentOrganizations;
+        private bool _isLivingAddressRegistration;
+        private bool _isNotLivingAddressRegistration;
+        private Address _registrationAddress;
+        private Address _livingAddress;
+        private string _registrationString;
+        private string _livingString;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
         public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
@@ -112,8 +118,6 @@ namespace SAKD.ViewModels
         public EnumListItem SelectedDocumentOrganization { get; set; }
 
         public ObservableCollection<Comission> Comissions { get; set; }
-        public ICommand AddServiceCommand { get; set; }
-        public ICommand EditServiceCommand { get; set; }
 
         public bool IsPhoto
         {
@@ -126,6 +130,55 @@ namespace SAKD.ViewModels
             get => _photo;
             set => SetProperty(ref _photo, value);
         }
+
+        public bool IsLivingAddressRegistration
+        {
+            get => _isLivingAddressRegistration;
+            set
+            {
+                SetProperty(ref _isLivingAddressRegistration, value);
+                IsNotLivingAddressRegistration = !_isLivingAddressRegistration;
+                if (_isLivingAddressRegistration)
+                {
+                    LivingAddress = RegistrationAddress;
+                }
+            }
+        }
+
+        public bool IsNotLivingAddressRegistration
+        {
+            get => _isNotLivingAddressRegistration;
+            set => SetProperty(ref _isNotLivingAddressRegistration, value);
+        }
+
+        public Address RegistrationAddress
+        {
+            get => _registrationAddress;
+            set => SetProperty(ref _registrationAddress, value);
+        }
+
+        public Address LivingAddress
+        {
+            get => _livingAddress;
+            set => SetProperty(ref _livingAddress, value);
+        }
+
+        public string RegistrationString
+        {
+            get => _registrationString;
+            set => SetProperty(ref _registrationString, value);
+        }
+
+        public string LivingString
+        {
+            get => _livingString;
+            set => SetProperty(ref _livingString, value);
+        }
+
+        public ICommand AddServiceCommand { get; set; }
+        public ICommand EditServiceCommand { get; set; }
+        public ICommand AddRegistrationAddressCommand { get; set; }
+        public ICommand AddLivingAddressCommand { get; set; }
 
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
         {
@@ -168,12 +221,50 @@ namespace SAKD.ViewModels
             SelectedEducation = Educations.FirstOrDefault(x => x.Int == (int)Order.Client.Education);
             DocumentTypes = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.DocumentType>());
             SelectedDocumentType = DocumentTypes.FirstOrDefault(x => x.Int == (int) Order.Client.Document.Type);
-            DocumentOrganizations = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.DocumentOrganization>());
-            SelectedDocumentOrganization = DocumentOrganizations.FirstOrDefault(x => x.Int == (int) Order.Client.Document.Organization)
+            DocumentOrganizations =
+                new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.DocumentOrganization>());
+            SelectedDocumentOrganization =
+                DocumentOrganizations.FirstOrDefault(x => x.Int == (int) Order.Client.Document.Organization);
+            IsLivingAddressRegistration = Order.Client.IsLivingAddressRegistration;
+            RegistrationAddress = Order.Client.RegistrationAddress;
+            LivingAddress = Order.Client.LivingAddress;
+            RegistrationString = RegistrationAddress.DisplayString;
+            LivingString = LivingAddress.DisplayString;
 
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
             EditServiceCommand = new Command(EditService, CanExecuteCommand);
+            AddRegistrationAddressCommand = new Command(AddRegistrationAddress, CanExecuteCommand);
+            AddLivingAddressCommand = new Command(AddLivingAddress, CanExecuteCommand);
+        }
+
+        private void AddRegistrationAddress(object parameter)
+        {
+            var view = new AddAddress(RegistrationAddress);
+            view.ViewModel.OnClose += AddRegistration_OnClose;
+            view.ShowDialog();
+        }
+
+        private void AddRegistration_OnClose(object sender, CustomEventArgs.OnCloseFilterViewEventArgs args)
+        {
+            if (!(sender is BaseViewModel vm)) return;
+            vm.OnClose -= AddRegistration_OnClose;
+            if (!args.IsApplied) return;
+            RegistrationString = RegistrationAddress.DisplayString;
+        }
+        private void AddLivingAddress(object parameter)
+        {
+            var view = new AddAddress(LivingAddress);
+            view.ViewModel.OnClose += AddLiving_OnClose;
+            view.ShowDialog();
+        }
+
+        private void AddLiving_OnClose(object sender, CustomEventArgs.OnCloseFilterViewEventArgs args)
+        {
+            if (!(sender is BaseViewModel vm)) return;
+            vm.OnClose -= AddLiving_OnClose;
+            if (!args.IsApplied) return;
+            LivingString = LivingAddress.DisplayString;
         }
 
         private void EditService(object parameter)
@@ -230,6 +321,8 @@ namespace SAKD.ViewModels
             Order.Client.Sex = (Enums.Sex) SelectedSex.Int;
             Order.Client.Pension = (Enums.Pension) SelectedPension.Int;
             Order.Client.Education = (Enums.Education) SelectedEducation.Int;
+            Order.Client.RegistrationAddress = RegistrationAddress;
+            Order.Client.LivingAddress = LivingAddress;
             _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,

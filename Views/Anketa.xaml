@@ -235,7 +235,7 @@
                                 </ComboBox>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="">
+                        <GroupBox Header="Құжат">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>
@@ -261,7 +261,7 @@
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
                                 <Label Content="Құжат нөмірі" Grid.Row="1" Grid.Column="0"/>
-                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Client.Document.Number}"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Order.Client.Document.Number}"/>
                                 <Label Content="Құжат берген мекеме" Grid.Row="2" Grid.Column="0"/>
                                 <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding DocumentOrganizations}" SelectedItem="{Binding SelectedDocumentOrganization}">
                                     <ComboBox.ItemTemplate>
@@ -274,6 +274,28 @@
                                 <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding Client.Document.Date}"/>
                                 <Label Content="Құжаттың аяқталу уақыты" Grid.Row="4" Grid.Column="0"/>
                                 <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding Client.Document.DateEnd}"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Header="Мекен жайы">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30*"/>
+                                    <ColumnDefinition Width="50*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Тіркелген мекен жайы" Grid.Column="0" Grid.Row="0"/>
+                                <Label Content="{Binding RegistrationString}" Grid.Column="1" Grid.Row="0"/>
+                                <Button Grid.Column="2" Grid.Row="0" Content="Өзгерту" Command="{Binding AddRegistrationAddressCommand}"/>
+                                <Label Content="Тұрғылықты мекен жайы сәйкесінше" Grid.Column="0" Grid.Row="1"/>
+                                <CheckBox IsChecked="{Binding IsLivingAddressRegistration}" Grid.Column="1" Grid.Row="1"/>
+                                <Label Content="Тұрғылыұты мекен жайы" Grid.Column="0" Grid.Row="2"/>
+                                <Label Content="{Binding LivingString}" Grid.Column="1" Grid.Row="2"/>
+                                <Button Visibility="{Binding IsNotLivingAddressRegistration, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="2" Grid.Row="2" Content="Өзгерту" Command="{Binding AddLivingAddressCommand}"/>
                             </Grid>
                         </GroupBox>
                     </StackPanel>

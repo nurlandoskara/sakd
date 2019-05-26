@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        Title="Клиентті таңдау" Width="400" WindowStyle="ToolWindow" Height="365">
+        Title="Клиентті таңдау" Width="400" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Height="365">
     <Grid>
         <StackPanel>
             <Label Content="ИИН" Margin="5"/>
