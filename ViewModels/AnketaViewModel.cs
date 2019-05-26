@@ -1,9 +1,13 @@
 ﻿using SAKD.Models;
 using SAKD.Views;
+using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace SAKD.ViewModels
 {
@@ -16,6 +20,8 @@ namespace SAKD.ViewModels
         private ObservableCollection<EnumListItem> _purposes;
         private ObservableCollection<EnumListItem> _currencies;
         private readonly ModelContainer _context;
+        private bool _isPhoto;
+        private ImageSource _photo;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
         public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
@@ -60,7 +66,18 @@ namespace SAKD.ViewModels
         public ObservableCollection<Comission> Comissions { get; set; }
         public ICommand AddServiceCommand { get; set; }
         public ICommand EditServiceCommand { get; set; }
-        public ICommand TakeCommand { get; set; }
+
+        public bool IsPhoto
+        {
+            get => _isPhoto;
+            set => SetProperty(ref _isPhoto, value);
+        }
+
+        public ImageSource Photo
+        {
+            get => _photo;
+            set => SetProperty(ref _photo, value);
+        }
 
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
         {
@@ -79,14 +96,19 @@ namespace SAKD.ViewModels
             SelectedCurrency = Currencies.FirstOrDefault(x => x.Int == (int) Order.Currency);
             Comissions = new ObservableCollection<Comission>(Order.Comissions);
             AdditionalServices = new ObservableCollection<AdditionalService>(Order.AdditionalServices);
+            if (!string.IsNullOrEmpty(Order.Photo))
+            {
+                byte[] binaryData = Convert.FromBase64String(Order.Photo);
+                BitmapImage bi = new BitmapImage();
+                bi.BeginInit();
+                bi.StreamSource = new MemoryStream(binaryData);
+                bi.EndInit();
+                Photo = bi;
+                IsPhoto = true;
+            }
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
             EditServiceCommand = new Command(EditService, CanExecuteCommand);
-            TakeCommand = new Command(TakePhoto, CanExecuteCommand);
-        }
-
-        private void TakePhoto(object parameter)
-        {
         }
 
         private void EditService(object parameter)
@@ -116,6 +138,28 @@ namespace SAKD.ViewModels
             Order.Method = (Enums.Method)SelectedMethod.Int;
             Order.Comissions = Comissions.ToList();
             Order.AdditionalServices = AdditionalServices.ToList();
+            if (Photo != null)
+            {
+                byte[] bytes = null;
+
+                if (Photo is BitmapSource bitmapSource)
+                {
+                    var encoder = new BmpBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+
+                    using (var stream = new MemoryStream())
+                    {
+                        encoder.Save(stream);
+                        bytes = stream.ToArray();
+                    }
+                }
+
+                if (bytes != null)
+                {
+                    var photoBase64String = Convert.ToBase64String(bytes);
+                    Order.Photo = photoBase64String;
+                }
+            }
             _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,

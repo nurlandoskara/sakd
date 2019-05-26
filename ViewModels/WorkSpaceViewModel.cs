@@ -108,7 +108,8 @@ namespace SAKD.ViewModels
             using (var db = new ModelContainer())
             {
                 Orders = new ObservableCollection<Order>(db.Orders.Where(x => (int) x.Status == status)
-                    .Include(x => x.Branch).Include(x => x.Client)
+                    .Include(x => x.Branch)
+                    .Include(x => x.Client)
                     .Include(x => x.Comissions)
                     .Include(x => x.Comissions.Select(y => y.ComissionType))
                     .Include(x => x.AdditionalServices)

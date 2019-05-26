@@ -7,7 +7,7 @@
                  WindowState="Maximized"
                  mc:Ignorable="d"
         WindowStyle="ToolWindow"
-        Title="Anketa" Height="450" Width="800">
+        Title="Anketa" Height="800" Width="1600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -154,15 +154,19 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40*"/>
-                                    <ColumnDefinition Width="60*"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="310"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <Label Content="ИИН" Grid.Row="0" Grid.Column="0"/>
-                                <TextBox Text="{Binding Iin}" Grid.Row="0" Grid.Column="1"/>
+                                <TextBox Text="{Binding Order.Client.Iin}" Grid.Row="0" Grid.Column="1"/>
                                 <Label Content="Фотография" Grid.Row="1" Grid.Column="0"/>
-                                <Image x:Name="imgVideo" Source="{Binding Photo}" Grid.Row="1" Grid.Column="1" Width="100" Height="180"/>
-                                <Button Content="Photo" Click="PhotoButton_OnClick"></Button>
-                                <Button Content="Фото жасау" Command="{Binding TakePhoto}" Grid.Row="2" Grid.Column="1"/>
+                                <Image x:Name="ImgVideo" Visibility="Collapsed" Grid.Row="1" Grid.Column="1" Width="300" Height="250"/>
+                                <Image x:Name="ImgPhoto" Source="{Binding Photo, Mode=TwoWay}" Visibility="{Binding IsPhoto, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Row="1" Grid.Column="1" Width="300" Height="250"/>
+                                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                                    <Button Content="Камераны қосу" Click="PhotoButton_OnClick" Margin="5" Width="145"/>
+                                    <Button Content="Фото" Click="TakePhoto_OnClick" Margin="5" Width="145"/>
+                                </StackPanel>
                             </Grid>
                         </GroupBox>
                     </StackPanel>
