@@ -22,6 +22,10 @@ namespace SAKD.ViewModels
         private readonly ModelContainer _context;
         private bool _isPhoto;
         private ImageSource _photo;
+        private ObservableCollection<Citizenship> _citizenships;
+        private ObservableCollection<EnumListItem> _sexes;
+        private ObservableCollection<EnumListItem> _pensions;
+        private ObservableCollection<EnumListItem> _educations;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
         public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
@@ -62,6 +66,34 @@ namespace SAKD.ViewModels
             set => SetProperty(ref _currencies, value);
         }
         public EnumListItem SelectedCurrency { get; set; }
+
+        public ObservableCollection<Citizenship> Citizenships
+        {
+            get => _citizenships;
+            set => SetProperty(ref _citizenships, value);
+        }
+        public Citizenship SelectedCitizenship { get; set; }
+
+        public ObservableCollection<EnumListItem> Sexes
+        {
+            get => _sexes;
+            set => SetProperty(ref _sexes, value);
+        }
+        public EnumListItem SelectedSex { get; set; }
+
+        public ObservableCollection<EnumListItem> Pensions
+        {
+            get => _pensions;
+            set => SetProperty(ref _pensions, value);
+        }
+        public EnumListItem SelectedPension { get; set; }
+
+        public ObservableCollection<EnumListItem> Educations
+        {
+            get => _educations;
+            set => SetProperty(ref _educations, value);
+        }
+        public EnumListItem SelectedEducation { get; set; }
 
         public ObservableCollection<Comission> Comissions { get; set; }
         public ICommand AddServiceCommand { get; set; }
@@ -106,6 +138,18 @@ namespace SAKD.ViewModels
                 Photo = bi;
                 IsPhoto = true;
             }
+
+            using (var db = new ModelContainer())
+            { 
+                Citizenships = new ObservableCollection<Citizenship>(db.Citizenships.ToList());
+                SelectedCitizenship = Citizenships.FirstOrDefault(x => x.Id == Order.Client.CitizenshipId);
+            }
+            Sexes = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Sex>());
+            SelectedSex = Sexes.FirstOrDefault(x => x.Int == (int) Order.Client.Sex);
+            Pensions = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Pension>());
+            SelectedPension = Pensions.FirstOrDefault(x => x.Int == (int)Order.Client.Pension);
+            Educations = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Education>());
+            SelectedEducation = Educations.FirstOrDefault(x => x.Int == (int)Order.Client.Education);
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
             EditServiceCommand = new Command(EditService, CanExecuteCommand);
@@ -160,6 +204,11 @@ namespace SAKD.ViewModels
                     Order.Photo = photoBase64String;
                 }
             }
+
+            Order.Client.Citizenship = SelectedCitizenship;
+            Order.Client.Sex = (Enums.Sex) SelectedSex.Int;
+            Order.Client.Pension = (Enums.Pension) SelectedPension.Int;
+            Order.Client.Education = (Enums.Education) SelectedEducation.Int;
             _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,

@@ -65,8 +65,8 @@
                         <DataGridTextColumn Header="Продукт кредитования" Binding="{Binding Product, Converter={converters:EnumDisplayNameConverter}}"/>
                         <DataGridTextColumn Header="Филиал" Binding="{Binding Branch.Name}"/>
                         <DataGridTextColumn Header="Несиелеу бағдарламасы" Binding="{Binding Program, Converter={converters:EnumDisplayNameConverter}}"/>
-                        <DataGridTextColumn Header="Тегі" Binding="{Binding Client.Lastname}"/>
-                        <DataGridTextColumn Header="Аты" Binding="{Binding Client.Firstname}"/>
+                        <DataGridTextColumn Header="Тегі" Binding="{Binding Client.LastName}"/>
+                        <DataGridTextColumn Header="Аты" Binding="{Binding Client.FirstName}"/>
                         <DataGridTextColumn Header="Әкесінің аты" Binding="{Binding Client.PatronymicName}"/>
                         <DataGridTextColumn Header="ИИН" Binding="{Binding Client.Iin}"/>
                         <DataGridTextColumn Header="Құжат нөмірі" Binding="{Binding Client.Document.Number}"/>

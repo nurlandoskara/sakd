@@ -152,6 +152,27 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="100"/>
@@ -167,6 +188,51 @@
                                     <Button Content="Камераны қосу" Click="PhotoButton_OnClick" Margin="5" Width="145"/>
                                     <Button Content="Фото" Click="TakePhoto_OnClick" Margin="5" Width="145"/>
                                 </StackPanel>
+
+                                <Label Content="Азаматтық" Grid.Row="3" Grid.Column="0"/>
+                                <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Citizenships}" SelectedItem="{Binding SelectedCitizenship}" IsTextSearchEnabled="True">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"></Label>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Label Content="Туған жері" Grid.Row="4" Grid.Column="0"/>
+                                <TextBox Text="{Binding Order.Client.BirthPlace}" Grid.Row="4" Grid.Column="1"/>
+                                <Label Content="Тегі" Grid.Row="5" Grid.Column="0"/>
+                                <TextBox Text="{Binding Order.Client.LastName}" Grid.Row="5" Grid.Column="1"/>
+                                <Label Content="Аты" Grid.Row="6" Grid.Column="0"/>
+                                <TextBox Text="{Binding Order.Client.FirstName}" Grid.Row="6" Grid.Column="1"/>
+                                <Label Content="Әкесінің аты" Grid.Row="7" Grid.Column="0"/>
+                                <TextBox Text="{Binding Order.Client.PatronymicName}" Grid.Row="7" Grid.Column="1"/>
+                                <Label Content="Туған күні" Grid.Row="8" Grid.Column="0"/>
+                                <DatePicker SelectedDate="{Binding Order.Client.BirthDate}" Grid.Row="8" Grid.Column="1"/>
+                                <Label Content="Жынысы" Grid.Row="9" Grid.Column="0"/>
+                                <ComboBox Grid.Column="1" Grid.Row="9" ItemsSource="{Binding Sexes}" SelectedItem="{Binding SelectedSex}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Label Content="Клиент аты-жөнін өзгерттіме" Grid.Row="10" Grid.Column="0"/>
+                                <CheckBox Grid.Row="10" Grid.Column="1" IsChecked="{Binding Order.Client.IsNameChanged}"/>
+                                <Label Content="Білімі" Grid.Row="11" Grid.Column="0"/>
+                                <ComboBox Grid.Column="1" Grid.Row="11" ItemsSource="{Binding Educations}" SelectedItem="{Binding SelectedEducation}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Label Content="Зейнеткер/Әскери қызметкер" Grid.Row="12" Grid.Column="0"/>
+                                <ComboBox Grid.Column="1" Grid.Row="12" ItemsSource="{Binding Pensions}" SelectedItem="{Binding SelectedPension}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
                             </Grid>
                         </GroupBox>
                     </StackPanel>

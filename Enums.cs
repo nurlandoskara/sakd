@@ -4,6 +4,18 @@ namespace SAKD
 {
     public class Enums
     {
+        public enum Education
+        {
+            [Description("Жоқ")]
+            None = 0,
+            [Description("Арнайы орта")]
+            College = 1,
+            [Description("Бакалавр")]
+            Bachelor = 2,
+            [Description("Магистр")]
+            Master = 3
+        }
+
         public enum Currency
         {
             [Description("Тенге")]
@@ -72,7 +84,9 @@ namespace SAKD
         }
         public enum Sex
         {
+            [Description("Ер")]
             Male = 0,
+            [Description("Әйел")]
             Female = 1
         }
         public enum Method
@@ -167,5 +181,21 @@ namespace SAKD
             [Description("Үшінші бас тарту")]
             CancelledByThird = 28
         }
+
+        public enum Pension
+        {
+            [Description("Нет")]
+            None = 0,
+            [Description("Зейнеткер")]
+            Pension = 1,
+            [Description("Әскери қызметкер")]
+            Military = 2
+        }
+
+        public enum SocialStatus
+        {
+            
+        }
+
     }
 }

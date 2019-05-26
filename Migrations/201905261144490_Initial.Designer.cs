@@ -7,13 +7,13 @@ namespace SAKD.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class BranchName : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(BranchName));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905151711508_BranchName"; }
+            get { return "201905261144490_Initial"; }
         }
         
         string IMigrationMetadata.Source

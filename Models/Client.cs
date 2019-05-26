@@ -15,10 +15,9 @@ namespace SAKD.Models
         public DateTime? BirthDate { get; set; }
         public Enums.Sex Sex { get; set; }
         public bool IsNameChanged { get; set; }
-        public string Education { get; set; }
-        public bool IsMilitaryOrPension { get; set; }
-        public int? SocialStatusId { get; set; }
-        public SocialStatus SocialStatus { get; set; }
+        public Enums.Education Education { get; set; }
+        public Enums.Pension Pension { get; set; }
+        public Enums.SocialStatus SocialStatus { get; set; }
         public int? DocumentId { get; set; }
         public Document Document { get; set; }
         public bool IsLivingAddressRegistration { get; set; }

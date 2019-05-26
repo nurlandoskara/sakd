@@ -84,41 +84,9 @@
     <Compile Include="EnumHelper.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Migrations\201905021235043_Initial.cs" />
-    <Compile Include="Migrations\201905021235043_Initial.Designer.cs">
-      <DependentUpon>201905021235043_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905151711508_BranchName.cs" />
-    <Compile Include="Migrations\201905151711508_BranchName.Designer.cs">
-      <DependentUpon>201905151711508_BranchName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905171751471_ClientBirthDate.cs" />
-    <Compile Include="Migrations\201905171751471_ClientBirthDate.Designer.cs">
-      <DependentUpon>201905171751471_ClientBirthDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905171756432_ClientAdditionalInfoNullable.cs" />
-    <Compile Include="Migrations\201905171756432_ClientAdditionalInfoNullable.Designer.cs">
-      <DependentUpon>201905171756432_ClientAdditionalInfoNullable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905171758250_ClientNullables.cs" />
-    <Compile Include="Migrations\201905171758250_ClientNullables.Designer.cs">
-      <DependentUpon>201905171758250_ClientNullables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905181824053_OrdersChange.cs" />
-    <Compile Include="Migrations\201905181824053_OrdersChange.Designer.cs">
-      <DependentUpon>201905181824053_OrdersChange.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905190958457_AddComissions.cs" />
-    <Compile Include="Migrations\201905190958457_AddComissions.Designer.cs">
-      <DependentUpon>201905190958457_AddComissions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905191004581_ComissionPercent.cs" />
-    <Compile Include="Migrations\201905191004581_ComissionPercent.Designer.cs">
-      <DependentUpon>201905191004581_ComissionPercent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905241714571_AdditionalService.cs" />
-    <Compile Include="Migrations\201905241714571_AdditionalService.Designer.cs">
-      <DependentUpon>201905241714571_AdditionalService.cs</DependentUpon>
+    <Compile Include="Migrations\201905261144490_Initial.cs" />
+    <Compile Include="Migrations\201905261144490_Initial.Designer.cs">
+      <DependentUpon>201905261144490_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContainer.cs" />
@@ -147,7 +115,6 @@
     <Compile Include="Models\Parents.cs" />
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Service.cs" />
-    <Compile Include="Models\SocialStatus.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\AddServiceViewModel.cs" />
     <Compile Include="ViewModels\AnketaViewModel.cs" />
@@ -226,32 +193,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201905021235043_Initial.resx">
-      <DependentUpon>201905021235043_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905151711508_BranchName.resx">
-      <DependentUpon>201905151711508_BranchName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905171751471_ClientBirthDate.resx">
-      <DependentUpon>201905171751471_ClientBirthDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905171756432_ClientAdditionalInfoNullable.resx">
-      <DependentUpon>201905171756432_ClientAdditionalInfoNullable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905171758250_ClientNullables.resx">
-      <DependentUpon>201905171758250_ClientNullables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905181824053_OrdersChange.resx">
-      <DependentUpon>201905181824053_OrdersChange.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905190958457_AddComissions.resx">
-      <DependentUpon>201905190958457_AddComissions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905191004581_ComissionPercent.resx">
-      <DependentUpon>201905191004581_ComissionPercent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905241714571_AdditionalService.resx">
-      <DependentUpon>201905241714571_AdditionalService.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201905261144490_Initial.resx">
+      <DependentUpon>201905261144490_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
