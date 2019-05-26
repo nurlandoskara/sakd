@@ -53,9 +53,10 @@ namespace SAKD.ViewModels
         {
             if(_client == null) _client = new Client
             {
-                Iin = Iin
+                Iin = Iin,
+                Document = new Document()
             };
-                var order = new Order
+            var order = new Order
                 {
                     Status = Enums.Status.S1,
                     Client = _client,

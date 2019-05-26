@@ -74,12 +74,16 @@ namespace SAKD
         }
         public enum DocumentOrganization
         {
+            [Description("ӘМ")]
             MU = 0,
+            [Description("ІІМ")]
             MVD = 1
         }
         public enum DocumentType
         {
+            [Description("Жеке басын куәләндіру куәлігі")]
             Identity = 0,
+            [Description("Паспорт")]
             Passport = 1
         }
         public enum Sex

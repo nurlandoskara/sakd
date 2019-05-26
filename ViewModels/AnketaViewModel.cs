@@ -26,6 +26,8 @@ namespace SAKD.ViewModels
         private ObservableCollection<EnumListItem> _sexes;
         private ObservableCollection<EnumListItem> _pensions;
         private ObservableCollection<EnumListItem> _educations;
+        private ObservableCollection<EnumListItem> _documentTypes;
+        private ObservableCollection<EnumListItem> _documentOrganizations;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
         public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
@@ -95,6 +97,20 @@ namespace SAKD.ViewModels
         }
         public EnumListItem SelectedEducation { get; set; }
 
+        public ObservableCollection<EnumListItem> DocumentTypes
+        {
+            get => _documentTypes;
+            set => SetProperty(ref _documentTypes, value);
+        }
+        public EnumListItem SelectedDocumentType { get; set; }
+
+        public ObservableCollection<EnumListItem> DocumentOrganizations
+        {
+            get => _documentOrganizations;
+            set => SetProperty(ref _documentOrganizations, value);
+        }
+        public EnumListItem SelectedDocumentOrganization { get; set; }
+
         public ObservableCollection<Comission> Comissions { get; set; }
         public ICommand AddServiceCommand { get; set; }
         public ICommand EditServiceCommand { get; set; }
@@ -150,6 +166,11 @@ namespace SAKD.ViewModels
             SelectedPension = Pensions.FirstOrDefault(x => x.Int == (int)Order.Client.Pension);
             Educations = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Education>());
             SelectedEducation = Educations.FirstOrDefault(x => x.Int == (int)Order.Client.Education);
+            DocumentTypes = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.DocumentType>());
+            SelectedDocumentType = DocumentTypes.FirstOrDefault(x => x.Int == (int) Order.Client.Document.Type);
+            DocumentOrganizations = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.DocumentOrganization>());
+            SelectedDocumentOrganization = DocumentOrganizations.FirstOrDefault(x => x.Int == (int) Order.Client.Document.Organization)
+
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
             EditServiceCommand = new Command(EditService, CanExecuteCommand);

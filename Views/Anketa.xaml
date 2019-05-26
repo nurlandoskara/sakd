@@ -235,6 +235,47 @@
                                 </ComboBox>
                             </Grid>
                         </GroupBox>
+                        <GroupBox Header="">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="60*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Құжат типі" Grid.Row="0" Grid.Column="0"/>
+                                <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding DocumentTypes}" SelectedItem="{Binding SelectedDocumentType}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Label Content="Құжат нөмірі" Grid.Row="1" Grid.Column="0"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Client.Document.Number}"/>
+                                <Label Content="Құжат берген мекеме" Grid.Row="2" Grid.Column="0"/>
+                                <ComboBox Grid.Row="2" Grid.Column="1" ItemsSource="{Binding DocumentOrganizations}" SelectedItem="{Binding SelectedDocumentOrganization}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"/>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Label Content="Берілген күні" Grid.Row="3" Grid.Column="0"/>
+                                <DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding Client.Document.Date}"/>
+                                <Label Content="Құжаттың аяқталу уақыты" Grid.Row="4" Grid.Column="0"/>
+                                <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding Client.Document.DateEnd}"/>
+                            </Grid>
+                        </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
             </mah:MetroTabItem>
