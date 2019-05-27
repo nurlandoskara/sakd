@@ -298,6 +298,60 @@
                                 <Button Visibility="{Binding IsNotLivingAddressRegistration, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="2" Grid.Row="2" Content="Өзгерту" Command="{Binding AddLivingAddressCommand}"/>
                             </Grid>
                         </GroupBox>
+                        <GroupBox Header="">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30*"/>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="10*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Мобильді телефон" Grid.Column="0" Grid.Row="0"/>
+                                <TextBox Text="{Binding Order.Client.MobilePhone}" Grid.Column="1" Grid.Row="0"/>
+                                <Label Content="Үй телефоны" Grid.Column="0" Grid.Row="1"/>
+                                <TextBox Text="{Binding Order.Client.HomePhone}" Grid.Column="1" Grid.Row="1"/>
+                                <Label Content="Email" Grid.Column="0" Grid.Row="2"/>
+                                <TextBox Text="{Binding Order.Client.Email}" Grid.Column="1" Grid.Row="2"/>
+                                <Label Content="СМС код" Grid.Column="0" Grid.Row="3"/>
+                                <TextBox Text="{Binding Order.Client.SmsCode}" Grid.Column="1" Grid.Row="3"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="60*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Статус" Grid.Column="0" Grid.Row="0"/>
+                                <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding RelationTypes}" SelectedItem="{Binding SelectedRelationType}" IsTextSearchEnabled="True">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"></Label>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Label Content="Аты" Grid.Column="0" Grid.Row="1"/>
+                                <TextBox Text="{Binding Order.Client.ContactPerson.FirstName}" Grid.Column="1" Grid.Row="1"/>
+                                <Label Content="Тегі" Grid.Column="0" Grid.Row="2"/>
+                                <TextBox Text="{Binding Order.Client.ContactPerson.LastName}" Grid.Column="1" Grid.Row="2"/>
+                                <Label Content="Әкесінің аты" Grid.Column="0" Grid.Row="3"/>
+                                <TextBox Text="{Binding Order.Client.ContactPerson.PatronymicName}" Grid.Column="1" Grid.Row="3"/>
+                                <Label Content="Мобильді нөмер" Grid.Column="0" Grid.Row="4"/>
+                                <TextBox Text="{Binding Order.Client.ContactPerson.MobilePhone}" Grid.Column="1" Grid.Row="4"/>
+                            </Grid>
+                        </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
             </mah:MetroTabItem>

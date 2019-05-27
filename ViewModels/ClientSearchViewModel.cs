@@ -56,7 +56,9 @@ namespace SAKD.ViewModels
                 Iin = Iin,
                 Document = new Document(),
                 RegistrationAddress = new Address(),
-                LivingAddress = new Address()
+                LivingAddress = new Address(),
+                ContactPerson = new ContactPerson()
+
             };
             var order = new Order
                 {
@@ -77,7 +79,5 @@ namespace SAKD.ViewModels
             OnClose.Invoke(this,
                 new CustomEventArgs.OnCloseFilterViewEventArgs {IsApplied = true});
         }
-
-
     }
 }

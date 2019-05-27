@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Security.Cryptography;
 
 namespace SAKD
 {
@@ -67,9 +68,13 @@ namespace SAKD
         }
         public enum RelationType
         {
+            [Description("Ата-анасы")]
             Parents = 0,
+            [Description("Бауырлары")]
             Siblings = 1,
+            [Description("Достары")]
             Friends = 2,
+            [Description("Жұмыстастары")]
             Colleagues = 3
         }
         public enum DocumentOrganization

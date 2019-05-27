@@ -34,6 +34,7 @@ namespace SAKD.ViewModels
         private Address _livingAddress;
         private string _registrationString;
         private string _livingString;
+        private ObservableCollection<EnumListItem> _relationTypes;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
         public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
@@ -175,6 +176,13 @@ namespace SAKD.ViewModels
             set => SetProperty(ref _livingString, value);
         }
 
+        public ObservableCollection<EnumListItem> RelationTypes
+        {
+            get => _relationTypes;
+            set => SetProperty(ref _relationTypes, value);
+        }
+        public EnumListItem SelectedRelationType { get; set; }
+
         public ICommand AddServiceCommand { get; set; }
         public ICommand EditServiceCommand { get; set; }
         public ICommand AddRegistrationAddressCommand { get; set; }
@@ -230,6 +238,9 @@ namespace SAKD.ViewModels
             LivingAddress = Order.Client.LivingAddress;
             RegistrationString = RegistrationAddress.DisplayString;
             LivingString = LivingAddress.DisplayString;
+            RelationTypes = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.RelationType>());
+            SelectedRelationType =
+                RelationTypes.FirstOrDefault(x => x.Int == (int) Order.Client.ContactPerson.RelationType);
 
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
@@ -323,6 +334,7 @@ namespace SAKD.ViewModels
             Order.Client.Education = (Enums.Education) SelectedEducation.Int;
             Order.Client.RegistrationAddress = RegistrationAddress;
             Order.Client.LivingAddress = LivingAddress;
+            Order.Client.ContactPerson.RelationType = (Enums.RelationType) SelectedRelationType.Int;
             _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,
