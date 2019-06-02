@@ -12,7 +12,7 @@ namespace SAKD.ViewModels
         private ObservableCollection<Area> _areas;
         private ObservableCollection<City> _cities;
         private readonly AddAddress _view;
-        public Address _address;
+        public Address Address { get; set; }
 
         public ObservableCollection<Region> Regions
         {
@@ -38,24 +38,24 @@ namespace SAKD.ViewModels
         public AddAddressViewModel(AddAddress view, Address address)
         {
             _view = view;
-            _address = address;
+            Address = address;
             using (var db = new ModelContainer())
             {
                 Regions = new ObservableCollection<Region>(db.Regions.ToList());
-                SelectedRegion = Regions.FirstOrDefault(x => x.Id == _address.RegionId);
+                SelectedRegion = Regions.FirstOrDefault(x => x.Id == Address.RegionId);
                 Areas = new ObservableCollection<Area>(db.Areas.ToList());
-                SelectedArea = Areas.FirstOrDefault(x => x.Id == _address.AreaId);
+                SelectedArea = Areas.FirstOrDefault(x => x.Id == Address.AreaId);
                 Cities = new ObservableCollection<City>(db.Cities.ToList());
-                SelectedCity = Cities.FirstOrDefault(x => x.Id == _address.CityId);
+                SelectedCity = Cities.FirstOrDefault(x => x.Id == Address.CityId);
             }
             SaveCommand = new Command(Save, CanExecuteCommand);
         }
 
         private void Save(object parameter)
         {
-            _address.Region = SelectedRegion;
-            _address.Area = SelectedArea;
-            _address.City = SelectedCity;
+            Address.Region = SelectedRegion;
+            Address.Area = SelectedArea;
+            Address.City = SelectedCity;
             _view.Close();
             OnClose.Invoke(this,
                 new CustomEventArgs.OnCloseFilterViewEventArgs { IsApplied = true });

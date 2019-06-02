@@ -84,25 +84,17 @@
     <Compile Include="EnumHelper.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Migrations\201905261144490_Initial.cs" />
-    <Compile Include="Migrations\201905261144490_Initial.Designer.cs">
-      <DependentUpon>201905261144490_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201906021339569_Initials.cs" />
+    <Compile Include="Migrations\201906021339569_Initials.Designer.cs">
+      <DependentUpon>201906021339569_Initials.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905261839018_Address.cs" />
-    <Compile Include="Migrations\201905261839018_Address.Designer.cs">
-      <DependentUpon>201905261839018_Address.cs</DependentUpon>
+    <Compile Include="Migrations\201906021340357_Empty.cs" />
+    <Compile Include="Migrations\201906021340357_Empty.Designer.cs">
+      <DependentUpon>201906021340357_Empty.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201905261840572_DocumentDate.cs" />
-    <Compile Include="Migrations\201905261840572_DocumentDate.Designer.cs">
-      <DependentUpon>201905261840572_DocumentDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905261916367_Empty.cs" />
-    <Compile Include="Migrations\201905261916367_Empty.Designer.cs">
-      <DependentUpon>201905261916367_Empty.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905270713197_ContactPerson.cs" />
-    <Compile Include="Migrations\201905270713197_ContactPerson.Designer.cs">
-      <DependentUpon>201905270713197_ContactPerson.cs</DependentUpon>
+    <Compile Include="Migrations\201906021342501_Fix.cs" />
+    <Compile Include="Migrations\201906021342501_Fix.Designer.cs">
+      <DependentUpon>201906021342501_Fix.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContainer.cs" />
@@ -132,6 +124,7 @@
     <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ViewModels\AddEmploymentViewModel.cs" />
     <Compile Include="ViewModels\AddAddressViewModel.cs" />
     <Compile Include="ViewModels\AddServiceViewModel.cs" />
     <Compile Include="ViewModels\AnketaViewModel.cs" />
@@ -140,6 +133,9 @@
     <Compile Include="ViewModels\ClientSearchViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\WorkSpaceViewModel.cs" />
+    <Compile Include="Views\AddEmployment.xaml.cs">
+      <DependentUpon>AddEmployment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AddAddress.xaml.cs">
       <DependentUpon>AddAddress.xaml</DependentUpon>
     </Compile>
@@ -156,6 +152,10 @@
       <DependentUpon>WorkSpace.xaml</DependentUpon>
     </Compile>
     <Compile Include="WebCam.cs" />
+    <Page Include="Views\AddEmployment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\AddAddress.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -217,20 +217,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201905261144490_Initial.resx">
-      <DependentUpon>201905261144490_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906021339569_Initials.resx">
+      <DependentUpon>201906021339569_Initials.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905261839018_Address.resx">
-      <DependentUpon>201905261839018_Address.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906021340357_Empty.resx">
+      <DependentUpon>201906021340357_Empty.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905261840572_DocumentDate.resx">
-      <DependentUpon>201905261840572_DocumentDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905261916367_Empty.resx">
-      <DependentUpon>201905261916367_Empty.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905270713197_ContactPerson.resx">
-      <DependentUpon>201905270713197_ContactPerson.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906021342501_Fix.resx">
+      <DependentUpon>201906021342501_Fix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

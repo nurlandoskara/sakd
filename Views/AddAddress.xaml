@@ -50,15 +50,15 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
         <Label Grid.Column="0" Grid.Row="4" Content="*Көше"/>
-        <TextBox Text="{Binding Street}" Grid.Column="1" Grid.Row="4"/>
+        <TextBox Text="{Binding Address.Street}" Grid.Column="1" Grid.Row="4"/>
         <Label Grid.Column="0" Grid.Row="5" Content="*Үй"/>
-        <TextBox Text="{Binding House}" Grid.Column="1" Grid.Row="5"/>
+        <TextBox Text="{Binding Address.House}" Grid.Column="1" Grid.Row="5"/>
         <Label Grid.Column="0" Grid.Row="6" Content="*Корпус"/>
-        <TextBox Text="{Binding Block}" Grid.Column="1" Grid.Row="6"/>
+        <TextBox Text="{Binding Address.Block}" Grid.Column="1" Grid.Row="6"/>
         <Label Grid.Column="0" Grid.Row="7" Content="*Ғимарат"/>
-        <TextBox Text="{Binding Building}" Grid.Column="1" Grid.Row="7"/>
+        <TextBox Text="{Binding Address.Building}" Grid.Column="1" Grid.Row="7"/>
         <Label Grid.Column="0" Grid.Row="8" Content="*Пәтер"/>
-        <TextBox Text="{Binding Apartment}" Grid.Column="1" Grid.Row="8"/>
+        <TextBox Text="{Binding Address.Apartment}" Grid.Column="1" Grid.Row="8"/>
         <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,50,0">
             <Button Content="OK" Command="{Binding SaveCommand}" Margin="5" Width="180"/>
             <Button Content="Болдырмау" Click="ButtonBase_OnClick" Margin="5" Width="180"/>

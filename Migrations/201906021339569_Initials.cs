@@ -3,7 +3,7 @@ namespace SAKD.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class Initials : DbMigration
     {
         public override void Up()
         {
@@ -31,8 +31,8 @@ namespace SAKD.Migrations
                         Percent = c.Double(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: false)
-                .ForeignKey("dbo.Services", t => t.ServiceId, cascadeDelete: false)
+                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
+                .ForeignKey("dbo.Services", t => t.ServiceId, cascadeDelete: true)
                 .Index(t => t.OrderId)
                 .Index(t => t.ServiceId);
             
@@ -55,8 +55,8 @@ namespace SAKD.Migrations
                         Photo = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Branches", t => t.BranchId, cascadeDelete: false)
-                .ForeignKey("dbo.Clients", t => t.ClientId, cascadeDelete: false)
+                .ForeignKey("dbo.Branches", t => t.BranchId, cascadeDelete: true)
+                .ForeignKey("dbo.Clients", t => t.ClientId, cascadeDelete: true)
                 .Index(t => t.BranchId)
                 .Index(t => t.ClientId);
             
@@ -137,7 +137,7 @@ namespace SAKD.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        RelationStatus = c.Int(nullable: false),
+                        RelationType = c.Int(nullable: false),
                         FirstName = c.String(),
                         LastName = c.String(),
                         PatronymicName = c.String(),
@@ -153,8 +153,8 @@ namespace SAKD.Migrations
                         Type = c.Int(nullable: false),
                         Number = c.String(),
                         Organization = c.Int(nullable: false),
-                        Date = c.DateTime(nullable: false),
-                        DateEnd = c.DateTime(nullable: false),
+                        Date = c.DateTime(),
+                        DateEnd = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -194,7 +194,7 @@ namespace SAKD.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         IndustryId = c.Int(nullable: false),
-                        AddressId = c.Int(nullable: false),
+                        Address = c.String(),
                         Phone = c.String(),
                         PositionCategory = c.String(),
                         WorkExperience = c.Int(nullable: false),
@@ -202,19 +202,26 @@ namespace SAKD.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Addresses", t => t.AddressId, cascadeDelete: false)
-                .ForeignKey("dbo.Industries", t => t.IndustryId, cascadeDelete: false)
-                .Index(t => t.IndustryId)
-                .Index(t => t.AddressId);
+                .ForeignKey("dbo.Industries", t => t.IndustryId, cascadeDelete: true)
+                .Index(t => t.IndustryId);
+            
+            CreateTable(
+                "dbo.Industries",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Addresses",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        RegionId = c.Int(nullable: false),
-                        AreaId = c.Int(nullable: false),
-                        CityId = c.Int(nullable: false),
+                        RegionId = c.Int(),
+                        AreaId = c.Int(),
+                        CityId = c.Int(),
                         Street = c.String(),
                         House = c.String(),
                         Block = c.String(),
@@ -222,9 +229,9 @@ namespace SAKD.Migrations
                         Apartment = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Areas", t => t.AreaId, cascadeDelete: false)
-                .ForeignKey("dbo.Cities", t => t.CityId, cascadeDelete: false)
-                .ForeignKey("dbo.Regions", t => t.RegionId, cascadeDelete: false)
+                .ForeignKey("dbo.Areas", t => t.AreaId)
+                .ForeignKey("dbo.Cities", t => t.CityId)
+                .ForeignKey("dbo.Regions", t => t.RegionId)
                 .Index(t => t.RegionId)
                 .Index(t => t.AreaId)
                 .Index(t => t.CityId);
@@ -238,7 +245,7 @@ namespace SAKD.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Regions", t => t.RegionId, cascadeDelete: false)
+                .ForeignKey("dbo.Regions", t => t.RegionId, cascadeDelete: true)
                 .Index(t => t.RegionId);
             
             CreateTable(
@@ -259,17 +266,8 @@ namespace SAKD.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Areas", t => t.AreaId, cascadeDelete: false)
+                .ForeignKey("dbo.Areas", t => t.AreaId, cascadeDelete: true)
                 .Index(t => t.AreaId);
-            
-            CreateTable(
-                "dbo.Industries",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.Parents",
@@ -286,7 +284,7 @@ namespace SAKD.Migrations
                         Comments = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Addresses", t => t.LivingAddressId, cascadeDelete: false)
+                .ForeignKey("dbo.Addresses", t => t.LivingAddressId, cascadeDelete: true)
                 .Index(t => t.LivingAddressId);
             
             CreateTable(
@@ -298,8 +296,8 @@ namespace SAKD.Migrations
                         ComissionTypeId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ComissionTypes", t => t.ComissionTypeId, cascadeDelete: false)
-                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: false)
+                .ForeignKey("dbo.ComissionTypes", t => t.ComissionTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
                 .Index(t => t.OrderId)
                 .Index(t => t.ComissionTypeId);
             
@@ -326,7 +324,7 @@ namespace SAKD.Migrations
                         Name = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: false)
+                .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
                 .Index(t => t.OrderId);
             
             CreateTable(
@@ -364,16 +362,15 @@ namespace SAKD.Migrations
             DropForeignKey("dbo.Clients", "ParentsId", "dbo.Parents");
             DropForeignKey("dbo.Parents", "LivingAddressId", "dbo.Addresses");
             DropForeignKey("dbo.Clients", "LivingAddressId", "dbo.Addresses");
-            DropForeignKey("dbo.Clients", "JobId", "dbo.Jobs");
-            DropForeignKey("dbo.Jobs", "MainJob_Id", "dbo.Employments");
-            DropForeignKey("dbo.Jobs", "AdditionalJob_Id", "dbo.Employments");
-            DropForeignKey("dbo.Employments", "IndustryId", "dbo.Industries");
-            DropForeignKey("dbo.Employments", "AddressId", "dbo.Addresses");
             DropForeignKey("dbo.Addresses", "RegionId", "dbo.Regions");
             DropForeignKey("dbo.Addresses", "CityId", "dbo.Cities");
             DropForeignKey("dbo.Cities", "AreaId", "dbo.Areas");
             DropForeignKey("dbo.Addresses", "AreaId", "dbo.Areas");
             DropForeignKey("dbo.Areas", "RegionId", "dbo.Regions");
+            DropForeignKey("dbo.Clients", "JobId", "dbo.Jobs");
+            DropForeignKey("dbo.Jobs", "MainJob_Id", "dbo.Employments");
+            DropForeignKey("dbo.Jobs", "AdditionalJob_Id", "dbo.Employments");
+            DropForeignKey("dbo.Employments", "IndustryId", "dbo.Industries");
             DropForeignKey("dbo.Clients", "FamilyId", "dbo.Families");
             DropForeignKey("dbo.Clients", "DocumentId", "dbo.Documents");
             DropForeignKey("dbo.Clients", "ContactPersonId", "dbo.ContactPersons");
@@ -390,7 +387,6 @@ namespace SAKD.Migrations
             DropIndex("dbo.Addresses", new[] { "CityId" });
             DropIndex("dbo.Addresses", new[] { "AreaId" });
             DropIndex("dbo.Addresses", new[] { "RegionId" });
-            DropIndex("dbo.Employments", new[] { "AddressId" });
             DropIndex("dbo.Employments", new[] { "IndustryId" });
             DropIndex("dbo.Jobs", new[] { "MainJob_Id" });
             DropIndex("dbo.Jobs", new[] { "AdditionalJob_Id" });
@@ -413,11 +409,11 @@ namespace SAKD.Migrations
             DropTable("dbo.ComissionTypes");
             DropTable("dbo.Comissions");
             DropTable("dbo.Parents");
-            DropTable("dbo.Industries");
             DropTable("dbo.Cities");
             DropTable("dbo.Regions");
             DropTable("dbo.Areas");
             DropTable("dbo.Addresses");
+            DropTable("dbo.Industries");
             DropTable("dbo.Employments");
             DropTable("dbo.Jobs");
             DropTable("dbo.Families");

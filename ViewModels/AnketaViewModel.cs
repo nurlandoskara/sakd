@@ -35,6 +35,10 @@ namespace SAKD.ViewModels
         private string _registrationString;
         private string _livingString;
         private ObservableCollection<EnumListItem> _relationTypes;
+        private string _mainJobString;
+        private string _additionalJobString;
+        private Employment _mainJob;
+        private Employment _additionalJob;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
         public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
@@ -179,6 +183,18 @@ namespace SAKD.ViewModels
             set => SetProperty(ref _livingString, value);
         }
 
+        public string MainJobString
+        {
+            get => _mainJobString;
+            set => SetProperty(ref _mainJobString, value);
+        }
+
+        public string AdditionalJobString
+        {
+            get => _additionalJobString;
+            set => SetProperty(ref _additionalJobString, value);
+        }
+
         public ObservableCollection<EnumListItem> RelationTypes
         {
             get => _relationTypes;
@@ -190,6 +206,8 @@ namespace SAKD.ViewModels
         public ICommand EditServiceCommand { get; set; }
         public ICommand AddRegistrationAddressCommand { get; set; }
         public ICommand AddLivingAddressCommand { get; set; }
+        public ICommand AddMainJobCommand { get; set; }
+        public ICommand AddAdditionalJobCommand { get; set; }
 
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
         {
@@ -246,12 +264,18 @@ namespace SAKD.ViewModels
                 RelationTypes.FirstOrDefault(x => x.Int == (int) Order.Client.ContactPerson.RelationType);
             FamilyStatuses = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.FamilyStatus>());
             SelectedFamilyStatus = FamilyStatuses.FirstOrDefault(x => x.Int == (int) Order.Client.Family.FamilyStatus);
+            MainJob = Order.Client.Job.MainJob;
+            MainJobString = MainJob?.DisplayString;
+            AdditionalJob = Order.Client.Job.AdditionalJob;
+            AdditionalJobString = AdditionalJob?.DisplayString;
 
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
             EditServiceCommand = new Command(EditService, CanExecuteCommand);
             AddRegistrationAddressCommand = new Command(AddRegistrationAddress, CanExecuteCommand);
             AddLivingAddressCommand = new Command(AddLivingAddress, CanExecuteCommand);
+            AddMainJobCommand = new Command(AddMainJob, CanExecuteCommand);
+            AddAdditionalJobCommand = new Command(AddAdditionalJob, CanExecuteCommand);
         }
 
         private void AddRegistrationAddress(object parameter)
@@ -283,6 +307,47 @@ namespace SAKD.ViewModels
             LivingString = LivingAddress.DisplayString;
         }
 
+        public Employment MainJob
+        {
+            get => _mainJob;
+            set => SetProperty(ref _mainJob, value);
+        }
+
+        private void AddMainJob(object parameter)
+        {
+            var view = new AddEmployment(MainJob);
+            view.ViewModel.OnClose += AddMainJob_OnClose;
+            view.ShowDialog();
+        }
+        
+        private void AddMainJob_OnClose(object sender, CustomEventArgs.OnCloseFilterViewEventArgs args)
+        {
+            if (!(sender is BaseViewModel vm)) return;
+            vm.OnClose -= AddMainJob_OnClose;
+            if (!args.IsApplied) return;
+            MainJobString = MainJob.DisplayString;
+        }
+
+        public Employment AdditionalJob
+        {
+            get => _additionalJob;
+            set => SetProperty(ref _additionalJob, value);
+        }
+
+        private void AddAdditionalJob(object parameter)
+        {
+            var view = new AddEmployment(AdditionalJob);
+            view.ViewModel.OnClose += AddAdditionalJob_OnClose;
+            view.ShowDialog();
+        }
+
+        private void AddAdditionalJob_OnClose(object sender, CustomEventArgs.OnCloseFilterViewEventArgs args)
+        {
+            if (!(sender is BaseViewModel vm)) return;
+            vm.OnClose -= AddAdditionalJob_OnClose;
+            if (!args.IsApplied) return;
+            AdditionalJobString = AdditionalJob.DisplayString;
+        }
         private void EditService(object parameter)
         {
             
@@ -341,6 +406,8 @@ namespace SAKD.ViewModels
             Order.Client.LivingAddress = LivingAddress;
             Order.Client.ContactPerson.RelationType = (Enums.RelationType) SelectedRelationType.Int;
             Order.Client.Family.FamilyStatus = (Enums.FamilyStatus) SelectedFamilyStatus.Int;
+            Order.Client.Job.MainJob = MainJob;
+            Order.Client.Job.AdditionalJob = AdditionalJob;
             _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,

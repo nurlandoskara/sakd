@@ -380,6 +380,37 @@
                                 <CheckBox Grid.Column="1" Grid.Row="3" IsChecked="{Binding Order.Client.Family.HasMovableProperty}"/>
                             </Grid>
                         </GroupBox>
+                        <GroupBox Header="Жұмыс орыны">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30*"/>
+                                    <ColumnDefinition Width="50*"/>
+                                    <ColumnDefinition Width="20*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="" Grid.Column="0" Grid.Row="0"/>
+                                <TextBlock Text="{Binding MainJobString}" Grid.Column="1" Grid.Row="0"/>
+                                <Button Content="Өзгерту" Grid.Column="2" Grid.Row="0" Command="{Binding AddMainJobCommand}"/>
+                                <Label Content="" Grid.Column="0" Grid.Row="1"/>
+                                <TextBlock Text="{Binding AdditionalJobString}" Grid.Column="1" Grid.Row="1"/>
+                                <Button Content="Өзгерту" Grid.Column="2" Grid.Row="1" Command="{Binding AddAdditionalJobCommand}"/>
+                                <Label Content="" Grid.Column="0" Grid.Row="2"/>
+                                <TextBlock Text="{Binding Order.Client.Job.MainSalary}" Grid.Column="1" Grid.Row="2"/>
+                                <Label Content="" Grid.Column="0" Grid.Row="3"/>
+                                <TextBlock Text="{Binding Order.Client.Job.AdditionalSalary}" Grid.Column="1" Grid.Row="3"/>
+                                <Label Content="" Grid.Column="0" Grid.Row="4"/>
+                                <TextBlock Text="{Binding Order.Client.Job.WorkExperience}" Grid.Column="1" Grid.Row="4"/>
+                                <Label Content="" Grid.Column="0" Grid.Row="5"/>
+                                <TextBlock Text="{Binding Order.Client.Job.SalaryBank}" Grid.Column="1" Grid.Row="5"/>
+                            </Grid>
+                        </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
             </mah:MetroTabItem>

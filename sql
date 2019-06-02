@@ -8,3 +8,7 @@ Sql("insert into areas(name, RegionId) values(N'Бөрлі',1)");
 Sql("insert into areas(name, RegionId) values(N'Зеленов',1)");
 Sql("insert into areas(name, RegionId) values(N'Орал қаласы',1)");
 Sql("insert into cities(name, AreaId) values(N'Орал',4)");
+Sql("insert into Industries(Name) values(N'IT технологиялар')");
+Sql("insert into Industries(Name) values(N'Білім беру')");
+Sql("insert into Industries(Name) values(N'Медицина')");
+Sql("insert into Industries(Name) values(N'Әскери')");

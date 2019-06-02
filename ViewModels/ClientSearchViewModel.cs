@@ -58,8 +58,11 @@ namespace SAKD.ViewModels
                 RegistrationAddress = new Address(),
                 LivingAddress = new Address(),
                 ContactPerson = new ContactPerson(),
-                Family = new Family()
-
+                Family = new Family(),
+                Job = new Job{
+                    MainJob = new Employment{Industry = new Industry()},
+                    AdditionalJob = new Employment{Industry = new Industry()}
+                },
             };
             var order = new Order
                 {

@@ -122,10 +122,16 @@ namespace SAKD.ViewModels
                     .Include(x => x.Client.LivingAddress.City)
                     .Include(x => x.Client.ContactPerson)
                     .Include(x => x.Client.Family)
+                    .Include(x => x.Client.Job)
+                    .Include(x => x.Client.Job.MainJob)
+                    .Include(x => x.Client.Job.MainJob.Industry)
+                    .Include(x => x.Client.Job.AdditionalJob)
+                    .Include(x => x.Client.Job.AdditionalJob.Industry)
                     .Include(x => x.Comissions)
                     .Include(x => x.Comissions.Select(y => y.ComissionType))
                     .Include(x => x.AdditionalServices)
-                    .Include(x => x.AdditionalServices.Select(y => y.Service)).ToList());
+                    .Include(x => x.AdditionalServices.Select(y => y.Service))
+                    .ToList());
             }
         }
 

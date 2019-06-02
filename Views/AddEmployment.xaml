@@ -1,0 +1,53 @@
+﻿<mah:MetroWindow x:Class="SAKD.Views.AddEmployment"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d"
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
+        Title="Жұмыс орынын қосу" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Content="*Мекеме атауы"/>
+        <TextBox Text="{Binding Employment.Name}" Grid.Column="1" Grid.Row="0"/>
+        <Label Grid.Column="0" Grid.Row="1" Content="*Саласы"/>
+        <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Industries}" SelectedItem="{Binding SelectedIndustry}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Label Content="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Grid.Column="0" Grid.Row="2" Content="*Мекен-жайы"/>
+        <TextBox Text="{Binding Employment.Address}" Grid.Column="1" Grid.Row="2"/>
+        <Label Grid.Column="0" Grid.Row="3" Content="*Телефон"/>
+        <TextBox Text="{Binding Employment.Phone}" Grid.Column="1" Grid.Row="3"/>
+        <Label Grid.Column="0" Grid.Row="4" Content="*Жұмысшы категориясы"/>
+        <TextBox Text="{Binding Employment.PositionCategory}" Grid.Column="1" Grid.Row="4"/>
+        <Label Grid.Column="0" Grid.Row="5" Content="*Жұмыс өтілі"/>
+        <TextBox Text="{Binding Employment.WorkExperience}" Grid.Column="1" Grid.Row="5"/>
+        <Label Grid.Column="0" Grid.Row="6" Content="*Комапанияның қызметкерлер саны"/>
+        <TextBox Text="{Binding Employment.CompanyEmployeesCount}" Grid.Column="1" Grid.Row="6"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,50,0">
+            <Button Content="OK" Command="{Binding SaveCommand}" Margin="5" Width="180"/>
+            <Button Content="Болдырмау" Click="ButtonBase_OnClick" Margin="5" Width="180"/>
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>
