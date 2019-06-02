@@ -1,0 +1,34 @@
+﻿<mah:MetroWindow x:Class="SAKD.Views.AddFile"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d"
+                 WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
+        Title="Құжат қосу" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="Құжат типі" Grid.Row="0" Grid.Column="0"/>
+        <TextBox Text="{Binding File.Type}" Grid.Row="0" Grid.Column="1"/>
+        <Label Content="Код" Grid.Row="1" Grid.Column="0"/>
+        <TextBox Text="{Binding File.Code}" Grid.Row="1" Grid.Column="1"/>
+        <Label Content="Код" Grid.Row="2" Grid.Column="0"/>
+        <Button Content="Жүктеу" Grid.Row="2" Grid.Column="1" Command="{Binding AddCommand}"/>
+        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Filepath}"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,50,0">
+            <Button Margin="5" Content="OK" Command="{Binding SaveCommand}"/>
+            <Button Margin="5" Content="Болдырмау" Click="ButtonBase_OnClick"/>
+        </StackPanel>
+    </Grid>
+</mah:MetroWindow>

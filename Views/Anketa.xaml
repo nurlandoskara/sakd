@@ -4,6 +4,7 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:converters="clr-namespace:SAKD.Converters"
                  WindowState="Maximized"
                  mc:Ignorable="d"
         WindowStyle="ToolWindow"
@@ -18,7 +19,22 @@
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
                     <StackPanel>
                         <GroupBox Visibility="{Binding Status2, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <CheckBox Content="FATCA қатысы" IsChecked="{Binding Order.Client.IsFatca}"></CheckBox>
+                            <StackPanel>
+                                <CheckBox Content="FATCA қатысы" IsChecked="{Binding Order.Client.IsFatca}"/>
+                                <Label Content="Құжаттар"/>
+                                <DataGrid Style="{StaticResource AzureDataGrid}" AutoGenerateColumns="False" ItemsSource="{Binding Files}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Уақыты" Binding="{Binding Date}"/>
+                                        <DataGridTextColumn Header="Құжат түрі" Binding="{Binding Type}"/>
+                                        <DataGridTextColumn Header="Код" Binding="{Binding Code}"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Content="Қосу" Margin="5" Width="120" Command="{Binding AddFileCommand}"/>
+                                    <Button Content="Өзгерту" Margin="5" Width="120" Command="{Binding EditFileCommand}"/>
+                                    <Button Content="Жою" Margin="5" Width="120" Command="{Binding DeleteFileCommand}"/>
+                                </StackPanel>
+                            </StackPanel>
                         </GroupBox>
                         <GroupBox Header="Филиал" IsEnabled="{Binding Status1}">
                             <Grid>

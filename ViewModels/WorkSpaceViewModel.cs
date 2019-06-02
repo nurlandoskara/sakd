@@ -132,6 +132,7 @@ namespace SAKD.ViewModels
                     .Include(x => x.Comissions.Select(y => y.ComissionType))
                     .Include(x => x.AdditionalServices)
                     .Include(x => x.AdditionalServices.Select(y => y.Service))
+                    .Include(x => x.Files)
                     .ToList());
             }
         }

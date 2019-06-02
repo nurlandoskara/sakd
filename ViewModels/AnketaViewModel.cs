@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ControlzEx.Standard;
+using File = SAKD.Models.File;
 
 namespace SAKD.ViewModels
 {
@@ -41,6 +42,7 @@ namespace SAKD.ViewModels
         private Employment _mainJob;
         private Employment _additionalJob;
         private ObservableCollection<EnumListItem> _sourceInfos;
+        private ObservableCollection<File> _files;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
         public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
@@ -214,9 +216,16 @@ namespace SAKD.ViewModels
         public ICommand AddMainJobCommand { get; set; }
         public ICommand AddAdditionalJobCommand { get; set; }
         public ICommand NextCommand { get; set; }
+        public ICommand AddFileCommand { get; set; }
 
         public bool Status1 { get; set; }
         public bool Status2 { get; set; }
+
+        public ObservableCollection<File> Files
+        {
+            get => _files;
+            set => SetProperty(ref _files, value);
+        }
 
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
         {
@@ -281,6 +290,9 @@ namespace SAKD.ViewModels
             AdditionalJobString = AdditionalJob?.DisplayString;
             SourceInfos = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.SourceInfo>());
             SelectedSourceInfo = SourceInfos.FirstOrDefault(x => x.Int == (int) Order.Client.AdditionalInfo.SourceInfo);
+            Files = Order.Files != null
+                ? new ObservableCollection<File>(Order.Files)
+                : new ObservableCollection<File>(); 
 
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
@@ -290,11 +302,12 @@ namespace SAKD.ViewModels
             AddMainJobCommand = new Command(AddMainJob, CanExecuteCommand);
             AddAdditionalJobCommand = new Command(AddAdditionalJob, CanExecuteCommand);
             NextCommand = new Command(Next, CanExecuteCommand);
+            AddFileCommand = new Command(AddFileVoid, CanExecuteCommand);
         }
 
         private void Next(object parameter)
         {
-            Order.Status = Enums.Status.S2;
+            Order.Status = Order.Status + 1;
             SaveExit();
         }
 
@@ -379,6 +392,12 @@ namespace SAKD.ViewModels
             view.ShowDialog();
         }
 
+        private void AddFileVoid(object parameter)
+        {
+            var view = new AddFile(Files);
+            view.ShowDialog();
+        }
+
         private void Save(object parameter)
         {
             if (SelectedPurpose == null || SelectedMethod == null || SelectedCurrency == null ||
@@ -429,6 +448,7 @@ namespace SAKD.ViewModels
             Order.Client.Job.MainJob = MainJob;
             Order.Client.Job.AdditionalJob = AdditionalJob;
             Order.Client.AdditionalInfo.SourceInfo = (Enums.SourceInfo) SelectedSourceInfo.Int;
+            Order.Files = Files;
             SaveExit();
         }
 
