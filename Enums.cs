@@ -140,43 +140,43 @@ namespace SAKD
         {
             [Description("Барлығы")]
             All = 0,
-            [Description("Калькуляторды толтыру")]
+            [Description("1.Калькуляторды толтыру")]
             S1 = 1,
-            [Description("Құжаттарды басып шығару және қол қою 1")]
+            [Description("2.Құжаттарды басып шығару және қол қою 1")]
             S2 = 2,
-            [Description("Автоматты өңдеу")]
+            [Description("3.Автоматты өңдеу")]
             S3 = 3,
-            [Description("Поведенческий скоринг")]
+            [Description("4.Поведенческий скоринг")]
             S4 = 4,
-            [Description("Отчетті сұрау")]
+            [Description("5.Отчетті сұрау")]
             S5 = 5,
-            [Description("ПКБ. Рефинансирование")]
+            [Description("6.ПКБ. Рефинансирование")]
             S6 = 6,
-            [Description("Запрос отчета ГЦВП")]
+            [Description("7.Запрос отчета ГЦВП")]
             S7 = 7,
-            [Description("Скоринг 2")]
+            [Description("8.Скоринг 2")]
             S8 = 8,
-            [Description("Алдын ала есептеу")]
+            [Description("8.1.Алдын ала есептеу")]
             S81 = 9,
-            [Description("Скоринг 3")]
+            [Description("9.Скоринг 3")]
             S9 = 10,
-            [Description("Тексеру")]
+            [Description("10.Тексеру")]
             S10 = 11,
-            [Description("УЛ шешім қабылдау")]
+            [Description("11.УЛ шешім қабылдау")]
             S11 = 12,
-            [Description("Хабарлау және клиенттің шешімі")]
+            [Description("12.Хабарлау және клиенттің шешімі")]
             S12 = 13,
-            [Description("Келісім шартты тіркеу")]
+            [Description("13.Келісім шартты тіркеу")]
             S13 = 14,
-            [Description("Құжаттарды басып шығару және қол қою 2")]
+            [Description("14.Құжаттарды басып шығару және қол қою 2")]
             S14 = 15,
-            [Description("Акцепт")]
+            [Description("15.Акцепт")]
             S15 = 16,
-            [Description("Келісімшартты мақұлдау")]
+            [Description("16.Келісімшартты мақұлдау")]
             S16 = 17,
-            [Description("Несие досьесін қабылдау")]
+            [Description("17.Несие досьесін қабылдау")]
             S17 = 18,
-            [Description("Жетілдіру")]
+            [Description("18.Жетілдіру")]
             S18 = 19,
             [Description("ПКБ қатесімен")]
             Error1 = 20,

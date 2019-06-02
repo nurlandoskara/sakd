@@ -329,7 +329,9 @@ namespace SAKD.ViewModels
             SelectedSourceInfo = SourceInfos.FirstOrDefault(x => x.Int == (int) Order.Client.AdditionalInfo.SourceInfo);
             Files = Order.Files != null
                 ? new ObservableCollection<File>(Order.Files)
-                : new ObservableCollection<File>(); 
+                : new ObservableCollection<File>();
+            const double tolerance = 0.01;
+            SelectedOffer = Offers?.FirstOrDefault(x => Math.Abs(x.Months - Order.Months) < tolerance);
 
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
@@ -498,6 +500,7 @@ namespace SAKD.ViewModels
             Order.Client.Job.AdditionalJob = AdditionalJob;
             Order.Client.AdditionalInfo.SourceInfo = (Enums.SourceInfo) SelectedSourceInfo.Int;
             Order.Files = Files;
+            Order.Months = SelectedOffer?.Months ?? Order.Months;
             SaveExit();
         }
 

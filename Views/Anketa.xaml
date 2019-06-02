@@ -512,7 +512,7 @@
                                 <Label Grid.Column="0" Grid.Row="3" Content="Несие мерзімі"/>
                                 <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedOffer.Months}" IsReadOnly="True"/>
                                 <Label Grid.Column="0" Grid.Row="4" Content="Ай сайынғы төлем"/>
-                                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedOffer.Monthly}"/>
+                                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedOffer.Monthly, Mode=OneWay}"/>
                                 <Label Grid.Column="0" Grid.Row="5" Content="Менеджер комменті"/>
                                 <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Order.Comment}"/>
                             </Grid>
