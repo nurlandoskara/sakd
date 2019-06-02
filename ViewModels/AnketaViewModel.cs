@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ControlzEx.Standard;
 
 namespace SAKD.ViewModels
 {
@@ -214,11 +215,16 @@ namespace SAKD.ViewModels
         public ICommand AddAdditionalJobCommand { get; set; }
         public ICommand NextCommand { get; set; }
 
+        public bool Status1 { get; set; }
+        public bool Status2 { get; set; }
+
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
         {
             _view = view;
             _context = context;
             Order = order;
+            Status1 = Order.Status == Enums.Status.S1;
+            Status2 = Order.Status == Enums.Status.S2;
             Products = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Product>());
             SelectedProduct = Products.FirstOrDefault(x => x.Int == (int)Order.Product);
             Programs = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Program>());

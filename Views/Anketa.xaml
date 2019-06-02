@@ -17,7 +17,10 @@
             <mah:MetroTabItem Header="Анкета">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
                     <StackPanel>
-                        <GroupBox Header="Филиал">
+                        <GroupBox Visibility="{Binding Status2, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <CheckBox Content="FATCA қатысы" IsChecked="{Binding Order.Client.IsFatca}"></CheckBox>
+                        </GroupBox>
+                        <GroupBox Header="Филиал" IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>
@@ -48,7 +51,7 @@
                                 <TextBox Grid.Column="1" Grid.Row="5"  IsReadOnly="True"/>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Несие туралы жалпы мәліметтер">
+                        <GroupBox Header="Несие туралы жалпы мәліметтер"  IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>
@@ -130,7 +133,7 @@
                                 </DataGrid>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Қосымша қызметтер">
+                        <GroupBox Header="Қосымша қызметтер"  IsEnabled="{Binding Status1}">
                             <StackPanel>
                                 <DataGrid  Style="{StaticResource AzureDataGrid}" ItemsSource="{Binding AdditionalServices}" AutoGenerateColumns="False">
                                     <DataGrid.Columns>
@@ -146,7 +149,7 @@
                                 </StackPanel>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="Жеке мәліметтер">
+                        <GroupBox Header="Жеке мәліметтер" IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
@@ -235,7 +238,7 @@
                                 </ComboBox>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Құжат">
+                        <GroupBox Header="Құжат" IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>
@@ -276,7 +279,7 @@
                                 <DatePicker Grid.Row="4" Grid.Column="1" SelectedDate="{Binding Client.Document.DateEnd}"/>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Мекен жайы">
+                        <GroupBox Header="Мекен жайы" IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30*"/>
@@ -298,7 +301,7 @@
                                 <Button Visibility="{Binding IsNotLivingAddressRegistration, Converter={StaticResource BooleanToVisibilityConverter}}" Grid.Column="2" Grid.Row="2" Content="Өзгерту" Command="{Binding AddLivingAddressCommand}"/>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Клиенттің байланыс мәліметтері">
+                        <GroupBox Header="Клиенттің байланыс мәліметтері" IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30*"/>
@@ -321,7 +324,7 @@
                                 <TextBox Text="{Binding Order.Client.SmsCode}" Grid.Column="1" Grid.Row="3"/>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Клиенттің байланысушы адамы">
+                        <GroupBox Header="Клиенттің байланысушы адамы" IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>
@@ -352,7 +355,7 @@
                                 <TextBox Text="{Binding Order.Client.ContactPerson.MobilePhone}" Grid.Column="1" Grid.Row="4"/>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Отбасы мәліметтері">
+                        <GroupBox Header="Отбасы мәліметтері" IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>
@@ -380,7 +383,7 @@
                                 <CheckBox Grid.Column="1" Grid.Row="3" IsChecked="{Binding Order.Client.Family.HasMovableProperty}"/>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Жұмыс орыны">
+                        <GroupBox Header="Жұмыс орыны" IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="30*"/>
@@ -411,7 +414,7 @@
                                 <TextBlock Text="{Binding Order.Client.Job.SalaryBank}" Grid.Column="1" Grid.Row="5"/>
                             </Grid>
                         </GroupBox>
-                        <GroupBox Header="Қосымша ақпарат">
+                        <GroupBox Header="Қосымша ақпарат" IsEnabled="{Binding Status1}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>
