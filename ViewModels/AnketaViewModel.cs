@@ -208,6 +208,7 @@ namespace SAKD.ViewModels
         public ICommand AddLivingAddressCommand { get; set; }
         public ICommand AddMainJobCommand { get; set; }
         public ICommand AddAdditionalJobCommand { get; set; }
+        public ICommand NextCommand { get; set; }
 
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
         {
@@ -276,6 +277,13 @@ namespace SAKD.ViewModels
             AddLivingAddressCommand = new Command(AddLivingAddress, CanExecuteCommand);
             AddMainJobCommand = new Command(AddMainJob, CanExecuteCommand);
             AddAdditionalJobCommand = new Command(AddAdditionalJob, CanExecuteCommand);
+            NextCommand = new Command(Next, CanExecuteCommand);
+        }
+
+        private void Next(object parameter)
+        {
+            Order.Status = Enums.Status.S2;
+            SaveExit();
         }
 
         private void AddRegistrationAddress(object parameter)
@@ -408,6 +416,11 @@ namespace SAKD.ViewModels
             Order.Client.Family.FamilyStatus = (Enums.FamilyStatus) SelectedFamilyStatus.Int;
             Order.Client.Job.MainJob = MainJob;
             Order.Client.Job.AdditionalJob = AdditionalJob;
+            SaveExit();
+        }
+
+        private void SaveExit()
+        {
             _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,
