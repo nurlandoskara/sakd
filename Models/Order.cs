@@ -22,5 +22,7 @@ namespace SAKD.Models
         public string Photo { get; set; }
         public virtual ICollection<File> Files { get; set; }
         public virtual ICollection<Comission> Comissions { get; set; }
+        public bool IsClientAccepted { get; set; }
+        public string Comment { get; set; }
     }
 }

@@ -43,6 +43,8 @@ namespace SAKD.ViewModels
         private Employment _additionalJob;
         private ObservableCollection<EnumListItem> _sourceInfos;
         private ObservableCollection<File> _files;
+        private bool _status81;
+        private Offer _selectedOffer;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
         public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
@@ -221,10 +223,44 @@ namespace SAKD.ViewModels
         public bool Status1 { get; set; }
         public bool Status2 { get; set; }
 
+        public bool Status81
+        {
+            get => _status81;
+            set
+            {
+                SetProperty(ref _status81, value);
+                Offer();
+            }
+        }
+
+        private void Offer()
+        {
+            Offers = new ObservableCollection<Offer>();
+            for (int i = 6; i < 60; i+=3)
+            {
+                Offers.Add(new Offer
+                {
+                    Total = Order.RequestSum,
+                    Refinance = 0,
+                    EndTotal = Order.RequestSum - (Order.AdditionalServices.Sum(x => x.TotalPrice) -
+                               Order.Comissions.Sum(x => x.ComissionType.ComissionPercent / 100 * Order.RequestSum)),
+                    Months = i
+
+                });
+            }
+        }
+
         public ObservableCollection<File> Files
         {
             get => _files;
             set => SetProperty(ref _files, value);
+        }
+        public ObservableCollection<Offer> Offers { get; set; }
+
+        public Offer SelectedOffer
+        {
+            get => _selectedOffer;
+            set => SetProperty(ref _selectedOffer, value);
         }
 
         public AnketaViewModel(Anketa view, Order order, ModelContainer context)
@@ -234,6 +270,7 @@ namespace SAKD.ViewModels
             Order = order;
             Status1 = Order.Status == Enums.Status.S1;
             Status2 = Order.Status == Enums.Status.S2;
+            Status81 = Order.Status == Enums.Status.S81;
             Products = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Product>());
             SelectedProduct = Products.FirstOrDefault(x => x.Int == (int)Order.Product);
             Programs = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Program>());
@@ -307,7 +344,19 @@ namespace SAKD.ViewModels
 
         private void Next(object parameter)
         {
-            Order.Status = Order.Status + 1;
+            switch (Order.Status)
+            {
+                case Enums.Status.S2:
+                    Order.Status = Enums.Status.S81;
+                    break;
+                case Enums.Status.S81:
+                    Order.Status = Enums.Status.S12;
+                    break;
+                default:
+                    Order.Status = Order.Status + 1;
+                    break;
+            }
+
             SaveExit();
         }
 

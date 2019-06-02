@@ -4,7 +4,6 @@
                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 xmlns:converters="clr-namespace:SAKD.Converters"
                  WindowState="Maximized"
                  mc:Ignorable="d"
         WindowStyle="ToolWindow"
@@ -463,6 +462,63 @@
                         </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
+            </mah:MetroTabItem>
+            <mah:MetroTabItem Header="Шешім" IsEnabled="{Binding Status81}" IsSelected="{Binding Status81}">
+                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                    <StackPanel>
+                        <GroupBox Header="Клиент шешімі">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Клиент келісті"/>
+                                <CheckBox IsChecked="{Binding Order.IsClientAccepted}"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="УЛ тексеріс">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Менеджер коментариі"/>
+                                <TextBox Text="{Binding Order.Comment}"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="Ұсыныс варианттары">
+                            <DataGrid Style="{StaticResource AzureDataGrid}" AutoGenerateColumns="False" ItemsSource="{Binding Offers}" SelectedItem="{Binding SelectedOffer}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Комбинация" Binding="{Binding Combination}"/>
+                                    <DataGridTextColumn Header="Несиенің жалпы сомасы" Binding="{Binding Total}"/>
+                                    <DataGridTextColumn Header="Қайта қаржыландыру сомасы" Binding="{Binding Refinance}"/>
+                                    <DataGridTextColumn Header="Қолға алатын ақша" Binding="{Binding EndTotal}"/>
+                                    <DataGridTextColumn Header="Несие мерзімі" Binding="{Binding Months}"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </GroupBox>
+                        <GroupBox Header="">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="60*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="0" Grid.Row="0" Content="Келісім сомасы"/>
+                                <TextBox Grid.Column="1" Grid.Row="0" Text="{Binding SelectedOffer.Total}" IsReadOnly="True"/>
+                                <Label Grid.Column="0" Grid.Row="1" Content="Қолға берілетін сома"/>
+                                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding SelectedOffer.EndTotal}" IsReadOnly="True"/>
+                                <Label Grid.Column="0" Grid.Row="2" Content="Қайталау қаржыландыру"/>
+                                <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding SelectedOffer.Refinance}" IsReadOnly="True"/>
+                                <Label Grid.Column="0" Grid.Row="3" Content="Несие мерзімі"/>
+                                <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding SelectedOffer.Months}" IsReadOnly="True"/>
+                                <Label Grid.Column="0" Grid.Row="4" Content="Ай сайынғы төлем"/>
+                                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding SelectedOffer.Monthly}"/>
+                                <Label Grid.Column="0" Grid.Row="5" Content="Менеджер комменті"/>
+                                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Order.Comment}"/>
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                    </ScrollViewer>
             </mah:MetroTabItem>
         </mah:MetroTabControl>
 
