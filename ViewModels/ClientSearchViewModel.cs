@@ -63,6 +63,7 @@ namespace SAKD.ViewModels
                     MainJob = new Employment{Industry = new Industry()},
                     AdditionalJob = new Employment{Industry = new Industry()}
                 },
+                AdditionalInfo = new AdditionalInfo()
             };
             var order = new Order
                 {

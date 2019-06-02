@@ -39,6 +39,7 @@ namespace SAKD.ViewModels
         private string _additionalJobString;
         private Employment _mainJob;
         private Employment _additionalJob;
+        private ObservableCollection<EnumListItem> _sourceInfos;
         public override event CustomEventArgs.OnCloseEvent OnClose = (sender, args) => { };
         public Order Order { get; set; }
         public ObservableCollection<AdditionalService> AdditionalServices { get; set; }
@@ -202,6 +203,9 @@ namespace SAKD.ViewModels
         }
         public EnumListItem SelectedRelationType { get; set; }
 
+        public ObservableCollection<EnumListItem> SourceInfos { get; set; }
+        public EnumListItem SelectedSourceInfo { get; set; }
+
         public ICommand AddServiceCommand { get; set; }
         public ICommand EditServiceCommand { get; set; }
         public ICommand AddRegistrationAddressCommand { get; set; }
@@ -269,6 +273,8 @@ namespace SAKD.ViewModels
             MainJobString = MainJob?.DisplayString;
             AdditionalJob = Order.Client.Job.AdditionalJob;
             AdditionalJobString = AdditionalJob?.DisplayString;
+            SourceInfos = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.SourceInfo>());
+            SelectedSourceInfo = SourceInfos.FirstOrDefault(x => x.Int == (int) Order.Client.AdditionalInfo.SourceInfo);
 
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
@@ -416,6 +422,7 @@ namespace SAKD.ViewModels
             Order.Client.Family.FamilyStatus = (Enums.FamilyStatus) SelectedFamilyStatus.Int;
             Order.Client.Job.MainJob = MainJob;
             Order.Client.Job.AdditionalJob = AdditionalJob;
+            Order.Client.AdditionalInfo.SourceInfo = (Enums.SourceInfo) SelectedSourceInfo.Int;
             SaveExit();
         }
 

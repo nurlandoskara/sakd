@@ -52,13 +52,18 @@ namespace SAKD
         }
         public enum SourceInfo
         {
+            [Description("Жарнама")]
             Advertisement = 0,
+            [Description("Кеңес арқылы")]
             Advice = 1
         }
         public enum ParentsStatus
         {
+            [Description("Әке-шешесі")]
             Both = 0,
+            [Description("Әкесі")]
             Father = 1,
+            [Description("Анасы")]
             Mother = 2
         }
         public enum FamilyStatus

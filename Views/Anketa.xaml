@@ -411,6 +411,37 @@
                                 <TextBlock Text="{Binding Order.Client.Job.SalaryBank}" Grid.Column="1" Grid.Row="5"/>
                             </Grid>
                         </GroupBox>
+                        <GroupBox Header="Қосымша ақпарат">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40*"/>
+                                    <ColumnDefinition Width="60*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Content="Несие туралы ақпаратты қайдан алды" Grid.Column="0" Grid.Row="0"/>
+                                <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding SourceInfos}" SelectedItem="{Binding SelectedSourceInfo}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label Content="{Binding Name}"></Label>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <Label Content="Алкоголді мас болу белгілері барма?" Grid.Column="0" Grid.Row="1"/>
+                                <CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding Order.AdditionalInfo.IsAlcohol}"/>
+                                <Label Content="Қасында бөгде адам барма?" Grid.Column="0" Grid.Row="2"/>
+                                <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding Order.AdditionalInfo.IsAnotherPerson}"/>
+                                <Label Content="КЛиент өзін күдікті ұстайма?" Grid.Column="0" Grid.Row="3"/>
+                                <CheckBox Grid.Column="1" Grid.Row="3" IsChecked="{Binding Order.AdditionalInfo.IsInadequate}"/>
+                                <Label Content="" Grid.Column="0" Grid.Row="4"/>
+                                <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Order.AdditionalInfo.Comments}"/>
+                            </Grid>
+                        </GroupBox>
                     </StackPanel>
                 </ScrollViewer>
             </mah:MetroTabItem>

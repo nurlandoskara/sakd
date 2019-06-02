@@ -127,6 +127,7 @@ namespace SAKD.ViewModels
                     .Include(x => x.Client.Job.MainJob.Industry)
                     .Include(x => x.Client.Job.AdditionalJob)
                     .Include(x => x.Client.Job.AdditionalJob.Industry)
+                    .Include(x => x.Client.AdditionalInfo)
                     .Include(x => x.Comissions)
                     .Include(x => x.Comissions.Select(y => y.ComissionType))
                     .Include(x => x.AdditionalServices)
