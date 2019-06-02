@@ -132,6 +132,9 @@ namespace SAKD.ViewModels
             set => SetProperty(ref _photo, value);
         }
 
+        public ObservableCollection<EnumListItem> FamilyStatuses { get; set; }
+        public EnumListItem SelectedFamilyStatus { get; set; }
+
         public bool IsLivingAddressRegistration
         {
             get => _isLivingAddressRegistration;
@@ -241,6 +244,8 @@ namespace SAKD.ViewModels
             RelationTypes = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.RelationType>());
             SelectedRelationType =
                 RelationTypes.FirstOrDefault(x => x.Int == (int) Order.Client.ContactPerson.RelationType);
+            FamilyStatuses = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.FamilyStatus>());
+            SelectedFamilyStatus = FamilyStatuses.FirstOrDefault(x => x.Int == (int) Order.Client.Family.FamilyStatus);
 
             OkCommand = new Command(Save, CanExecuteCommand);
             AddServiceCommand = new Command(AddService, CanExecuteCommand);
@@ -335,6 +340,7 @@ namespace SAKD.ViewModels
             Order.Client.RegistrationAddress = RegistrationAddress;
             Order.Client.LivingAddress = LivingAddress;
             Order.Client.ContactPerson.RelationType = (Enums.RelationType) SelectedRelationType.Int;
+            Order.Client.Family.FamilyStatus = (Enums.FamilyStatus) SelectedFamilyStatus.Int;
             _context.SaveChanges();
             _view.Close();
             OnClose.Invoke(this,

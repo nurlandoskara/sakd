@@ -63,7 +63,9 @@ namespace SAKD
         }
         public enum FamilyStatus
         {
+            [Description("Тұрмыс құрмаған")]
             NotMarried = 0,
+            [Description("Тұрмыс құрған")]
             Married = 1
         }
         public enum RelationType

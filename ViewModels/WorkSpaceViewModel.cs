@@ -121,6 +121,7 @@ namespace SAKD.ViewModels
                     .Include(x => x.Client.LivingAddress.Area)
                     .Include(x => x.Client.LivingAddress.City)
                     .Include(x => x.Client.ContactPerson)
+                    .Include(x => x.Client.Family)
                     .Include(x => x.Comissions)
                     .Include(x => x.Comissions.Select(y => y.ComissionType))
                     .Include(x => x.AdditionalServices)

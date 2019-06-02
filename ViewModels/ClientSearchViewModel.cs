@@ -57,7 +57,8 @@ namespace SAKD.ViewModels
                 Document = new Document(),
                 RegistrationAddress = new Address(),
                 LivingAddress = new Address(),
-                ContactPerson = new ContactPerson()
+                ContactPerson = new ContactPerson(),
+                Family = new Family()
 
             };
             var order = new Order
