@@ -41,7 +41,6 @@ namespace SAKD.ViewModels
         private string _additionalJobString;
         private Employment _mainJob;
         private Employment _additionalJob;
-        private ObservableCollection<EnumListItem> _sourceInfos;
         private ObservableCollection<File> _files;
         private bool _status81;
         private Offer _selectedOffer;
@@ -222,6 +221,7 @@ namespace SAKD.ViewModels
 
         public bool Status1 { get; set; }
         public bool Status2 { get; set; }
+        public bool Status12 { get; set; }
 
         public bool Status81
         {
@@ -271,6 +271,7 @@ namespace SAKD.ViewModels
             Status1 = Order.Status == Enums.Status.S1;
             Status2 = Order.Status == Enums.Status.S2;
             Status81 = Order.Status == Enums.Status.S81;
+            Status12 = Order.Status == Enums.Status.S12;
             Products = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Product>());
             SelectedProduct = Products.FirstOrDefault(x => x.Int == (int)Order.Product);
             Programs = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Program>());

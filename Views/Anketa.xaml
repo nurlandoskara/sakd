@@ -17,6 +17,16 @@
             <mah:MetroTabItem Header="Анкета">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
                     <StackPanel>
+                        <GroupBox Visibility="{Binding Status12, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="200" Content=""/>
+                                <TextBox Width="300" Text="{Binding }"/>
+                                <Label Width="200" Content=""/>
+                                <TextBox Width="300" Text="{Binding }"/>
+                                <Label Width="200" Content=""/>
+                                <TextBox Width="300" Text="{Binding }"/>
+                            </StackPanel>
+                        </GroupBox>
                         <GroupBox Visibility="{Binding Status2, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel>
                                 <CheckBox Content="FATCA қатысы" IsChecked="{Binding Order.Client.IsFatca}"/>

@@ -13,7 +13,7 @@ namespace SAKD.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201906030740391_Empty"; }
+            get { return "201906031544325_Empty"; }
         }
         
         string IMigrationMetadata.Source

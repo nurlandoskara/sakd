@@ -13,7 +13,7 @@ namespace SAKD.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201906030740155_Initial"; }
+            get { return "201906031542202_Initial"; }
         }
         
         string IMigrationMetadata.Source
