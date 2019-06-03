@@ -7,13 +7,13 @@ namespace SAKD.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Offers : IMigrationMetadata
+    public sealed partial class Empty : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Offers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Empty));
         
         string IMigrationMetadata.Id
         {
-            get { return "201906021726153_Offers"; }
+            get { return "201906030740391_Empty"; }
         }
         
         string IMigrationMetadata.Source

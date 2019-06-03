@@ -84,29 +84,13 @@
     <Compile Include="EnumHelper.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Helper.cs" />
-    <Compile Include="Migrations\201906021339569_Initials.cs" />
-    <Compile Include="Migrations\201906021339569_Initials.Designer.cs">
-      <DependentUpon>201906021339569_Initials.cs</DependentUpon>
+    <Compile Include="Migrations\201906030740155_Initial.cs" />
+    <Compile Include="Migrations\201906030740155_Initial.Designer.cs">
+      <DependentUpon>201906030740155_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906021340357_Empty.cs" />
-    <Compile Include="Migrations\201906021340357_Empty.Designer.cs">
-      <DependentUpon>201906021340357_Empty.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906021342501_Fix.cs" />
-    <Compile Include="Migrations\201906021342501_Fix.Designer.cs">
-      <DependentUpon>201906021342501_Fix.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906021628158_File.cs" />
-    <Compile Include="Migrations\201906021628158_File.Designer.cs">
-      <DependentUpon>201906021628158_File.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906021726153_Offers.cs" />
-    <Compile Include="Migrations\201906021726153_Offers.Designer.cs">
-      <DependentUpon>201906021726153_Offers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906021818456_OffersMonth.cs" />
-    <Compile Include="Migrations\201906021818456_OffersMonth.Designer.cs">
-      <DependentUpon>201906021818456_OffersMonth.cs</DependentUpon>
+    <Compile Include="Migrations\201906030740391_Empty.cs" />
+    <Compile Include="Migrations\201906030740391_Empty.Designer.cs">
+      <DependentUpon>201906030740391_Empty.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelContainer.cs" />
@@ -238,23 +222,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201906021339569_Initials.resx">
-      <DependentUpon>201906021339569_Initials.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906030740155_Initial.resx">
+      <DependentUpon>201906030740155_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906021340357_Empty.resx">
-      <DependentUpon>201906021340357_Empty.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906021342501_Fix.resx">
-      <DependentUpon>201906021342501_Fix.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906021628158_File.resx">
-      <DependentUpon>201906021628158_File.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906021726153_Offers.resx">
-      <DependentUpon>201906021726153_Offers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906021818456_OffersMonth.resx">
-      <DependentUpon>201906021818456_OffersMonth.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906030740391_Empty.resx">
+      <DependentUpon>201906030740391_Empty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
