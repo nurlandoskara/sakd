@@ -1,13 +1,13 @@
 ﻿<mah:MetroWindow x:Class="SAKD.Views.AddAddress"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SAKD.Views"
-        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        mc:Ignorable="d"
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
-        Title="AddAddress" Height="450" Width="800">
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 mc:Ignorable="d"
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
+        Title="Адрес қосу" Height="279.333" Width="600">
+    <StackPanel>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40*"/>
@@ -25,7 +25,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0" Grid.Row="1" Content="*Облыс"/>
+        <Label Grid.Column="0" Grid.Row="0" Content="*Облыс"/>
         <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding Regions}" SelectedItem="{Binding SelectedRegion}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -59,9 +59,11 @@
         <TextBox Text="{Binding Address.Building}" Grid.Column="1" Grid.Row="7"/>
         <Label Grid.Column="0" Grid.Row="8" Content="*Пәтер"/>
         <TextBox Text="{Binding Address.Apartment}" Grid.Column="1" Grid.Row="8"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,50,0">
-            <Button Content="OK" Command="{Binding SaveCommand}" Margin="5" Width="180"/>
-            <Button Content="Болдырмау" Click="ButtonBase_OnClick" Margin="5" Width="180"/>
-        </StackPanel>
     </Grid>
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <Button Content="OK" Command="{Binding SaveCommand}" Margin="5" Width="140"/>
+        <Button Content="Болдырмау" Click="ButtonBase_OnClick" Margin="5" Width="140"/>
+    </StackPanel>
+    </StackPanel>
 </mah:MetroWindow>

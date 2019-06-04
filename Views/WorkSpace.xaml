@@ -6,8 +6,8 @@
         mc:Ignorable="d"
         xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:converters="clr-namespace:SAKD.Converters"
-        WindowState="Maximized"
-        Title="Жұмыс аймағы" Height="450" Width="800">
+        WindowState="Normal" WindowStartupLocation="CenterScreen"
+        Title="Жұмыс аймағы" Height="600" Width="800">
 
     <controls:MetroWindow.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />

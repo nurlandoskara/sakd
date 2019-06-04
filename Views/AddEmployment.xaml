@@ -5,9 +5,10 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  mc:Ignorable="d"
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
-        Title="Жұмыс орынын қосу" Height="450" Width="800">
-    <Grid>
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
+        Title="Жұмыс орынын қосу" Height="252.667" Width="600">
+    <StackPanel>
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40*"/>
             <ColumnDefinition Width="60*"/>
@@ -44,10 +45,10 @@
         <TextBox Text="{Binding Employment.WorkExperience}" Grid.Column="1" Grid.Row="5"/>
         <Label Grid.Column="0" Grid.Row="6" Content="*Комапанияның қызметкерлер саны"/>
         <TextBox Text="{Binding Employment.CompanyEmployeesCount}" Grid.Column="1" Grid.Row="6"/>
-
-        <StackPanel Orientation="Horizontal" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,50,0">
-            <Button Content="OK" Command="{Binding SaveCommand}" Margin="5" Width="180"/>
-            <Button Content="Болдырмау" Click="ButtonBase_OnClick" Margin="5" Width="180"/>
-        </StackPanel>
     </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="OK" Command="{Binding SaveCommand}" Margin="5" Width="140"/>
+            <Button Content="Болдырмау" Click="ButtonBase_OnClick" Margin="5" Width="140"/>
+        </StackPanel>
+        </StackPanel>
 </mah:MetroWindow>

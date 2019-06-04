@@ -20,8 +20,8 @@ namespace SAKD.ViewModels
 
         public LoginViewModel()
         {
-            Username = "apetrova";
-            Password = "asdfgh12";
+            Username = "manager";
+            Password = "manager";
             LoginCommand = new Command(Login, CanExecuteCommand);
         }
 
@@ -32,17 +32,7 @@ namespace SAKD.ViewModels
                 Error = "Логин немесе пароль дұрыс емес";
                 return;
             }
-
-            using (var db = new ModelContainer())
-            {
-                var user = db.Users.FirstOrDefault(x => x.Username == Username && x.Password == Password);
-                if (user == null)
-                {
-                    Error = "Логин немесе пароль дұрыс емес";
-                    return;
-                }
-            }
-
+            
             var mainWindow = new MainWindow();
             mainWindow.Show();
         }

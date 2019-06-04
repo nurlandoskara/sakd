@@ -5,8 +5,9 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  mc:Ignorable="d"
-                 WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
-        Title="Құжат қосу" Height="450" Width="800">
+                 WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
+        Title="Құжат қосу" Height="150" Width="600">
+    <StackPanel>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="40*"/>
@@ -23,12 +24,12 @@
         <TextBox Text="{Binding File.Type}" Grid.Row="0" Grid.Column="1"/>
         <Label Content="Код" Grid.Row="1" Grid.Column="0"/>
         <TextBox Text="{Binding File.Code}" Grid.Row="1" Grid.Column="1"/>
-        <Label Content="Код" Grid.Row="2" Grid.Column="0"/>
-        <Button Content="Жүктеу" Grid.Row="2" Grid.Column="1" Command="{Binding AddCommand}"/>
-        <Label Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Filepath}"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,50,0">
-            <Button Margin="5" Content="OK" Command="{Binding SaveCommand}"/>
-            <Button Margin="5" Content="Болдырмау" Click="ButtonBase_OnClick"/>
+        <Label Content="{Binding Filepath}" Grid.Row="2" Grid.Column="0"/>
+        <Button Content="Файл ..." Grid.Row="2" Grid.Column="1" Command="{Binding AddCommand}"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="5" Content="OK" Command="{Binding SaveCommand}" Width="140"/>
+            <Button Margin="5" Content="Болдырмау" Click="ButtonBase_OnClick" Width="140"/>
         </StackPanel>
-    </Grid>
+    </StackPanel>
 </mah:MetroWindow>
