@@ -23,6 +23,10 @@ namespace SAKD.Models
         public virtual ICollection<File> Files { get; set; }
         public virtual ICollection<Comission> Comissions { get; set; }
         public bool IsClientAccepted { get; set; }
+        public int MonthlyDate { get; set; }
+        public bool IsVisaInstant { get; set; }
+        public string Pan { get; set; }
         public string Comment { get; set; }
+        public string CodeWord { get; set; }
     }
 }

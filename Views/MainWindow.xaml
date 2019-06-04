@@ -15,10 +15,10 @@
         </Grid.RowDefinitions>
         <Menu x:Name="MainMenu">
             <MenuItem Header="Файл"/>
-            <MenuItem Header="Тапсырмалар">
-                <MenuItem Header="Кепілсіз несие" Click="MenuItem_OnClick"/>
-                <MenuItem Header="Алдын ала мақұлданған несие"/>
-                <MenuItem Header="Менің сұраныстарым"/>
+            <MenuItem Header="Жаңа сұраныс">
+                <MenuItem Header="Кепілсіз несие" Click="MenuItem_OnClick" FontWeight="Bold"/>
+                <MenuItem Header="Алдын ала мақұлданған несие" FontWeight="Normal"/>
+                <MenuItem Header="Менің сұраныстарым" FontWeight="Normal"/>
             </MenuItem>
             <MenuItem Header="Баптаулар"/>
             <MenuItem Header="Көмек"/>

@@ -5,7 +5,7 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  mc:Ignorable="d"
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner" WindowState="Normal"
         Title="Anketa" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
@@ -16,16 +16,6 @@
             <mah:MetroTabItem Header="Анкета">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
                     <StackPanel>
-                        <GroupBox Visibility="{Binding Status12, Converter={StaticResource BooleanToVisibilityConverter}}">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Width="200" Content=""/>
-                                <TextBox Width="300" Text="{Binding }"/>
-                                <Label Width="200" Content=""/>
-                                <TextBox Width="300" Text="{Binding }"/>
-                                <Label Width="200" Content=""/>
-                                <TextBox Width="300" Text="{Binding }"/>
-                            </StackPanel>
-                        </GroupBox>
                         <GroupBox Visibility="{Binding Status2, Converter={StaticResource BooleanToVisibilityConverter}}">
                             <StackPanel>
                                 <CheckBox Content="FATCA қатысы" IsChecked="{Binding Order.Client.IsFatca}"/>
@@ -472,22 +462,34 @@
                     </StackPanel>
                 </ScrollViewer>
             </mah:MetroTabItem>
-            <mah:MetroTabItem Header="Шешім" IsEnabled="{Binding Status81}" IsSelected="{Binding Status81}">
+            <mah:MetroTabItem Header="Шешім" IsEnabled="{Binding StatusResponse}" IsSelected="{Binding StatusResponse}">
                 <ScrollViewer VerticalScrollBarVisibility="Visible">
                     <StackPanel>
-                        <GroupBox Header="Клиент шешімі">
+                        <GroupBox Visibility="{Binding Status12, Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <StackPanel>
                             <StackPanel Orientation="Horizontal">
-                                <Label Content="Клиент келісті"/>
-                                <CheckBox IsChecked="{Binding Order.IsClientAccepted}"/>
+                                <Label Width="200" Content="Клиент келістіме?"/>
+                                <CheckBox Width="300" IsChecked="{Binding Order.IsClientAccepted}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="200" Content="Төлем күні"/>
+                                <TextBox Width="300" Text="{Binding MonthlyDate}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="200" Content="VISA Instant картасынама?"/>
+                                <CheckBox Width="300" IsChecked="{Binding Order.IsVisaInstant}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="200" Content="Карта номері"/>
+                                <TextBox Width="300" Text="{Binding Order.Pan}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Width="200" Content="Құпия сөз"/>
+                                <TextBox Width="300" Text="{Binding Order.CodeWord}"/>
+                            </StackPanel>
                             </StackPanel>
                         </GroupBox>
-                        <GroupBox Header="УЛ тексеріс">
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="Менеджер коментариі"/>
-                                <TextBox Text="{Binding Order.Comment}"/>
-                            </StackPanel>
-                        </GroupBox>
-                        <GroupBox Header="Ұсыныс варианттары">
+                        <GroupBox Header="Ұсыныс варианттары" IsEnabled="{Binding Status81}">
                             <DataGrid Style="{StaticResource AzureDataGrid}" AutoGenerateColumns="False" ItemsSource="{Binding Offers}" SelectedItem="{Binding SelectedOffer}">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="Комбинация" Binding="{Binding Combination}"/>
@@ -498,7 +500,13 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                         </GroupBox>
-                        <GroupBox Header="">
+                        <GroupBox Header="УЛ тексеріс" IsEnabled="{Binding Status81}">
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="Менеджер коментариі"/>
+                                <TextBox Text="{Binding Order.Comment}"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="" IsEnabled="{Binding Status81}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40*"/>

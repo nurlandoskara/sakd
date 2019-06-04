@@ -221,9 +221,10 @@ namespace SAKD.ViewModels
 
         public bool Status1 { get; set; }
         public bool Status2 { get; set; }
+        public bool Status81 { get; set; }
         public bool Status12 { get; set; }
 
-        public bool Status81
+        public bool StatusResponse
         {
             get => _status81;
             set
@@ -236,7 +237,7 @@ namespace SAKD.ViewModels
         private void Offer()
         {
             Offers = new ObservableCollection<Offer>();
-            for (int i = 6; i < 60; i+=3)
+            for (var i = 6; i < 60; i+=3)
             {
                 Offers.Add(new Offer
                 {
@@ -245,7 +246,6 @@ namespace SAKD.ViewModels
                     EndTotal = Order.RequestSum - (Order.AdditionalServices.Sum(x => x.TotalPrice) -
                                Order.Comissions.Sum(x => x.ComissionType.ComissionPercent / 100 * Order.RequestSum)),
                     Months = i
-
                 });
             }
         }
@@ -272,6 +272,7 @@ namespace SAKD.ViewModels
             Status2 = Order.Status == Enums.Status.S2;
             Status81 = Order.Status == Enums.Status.S81;
             Status12 = Order.Status == Enums.Status.S12;
+            StatusResponse = Status81 || Status12;
             Products = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Product>());
             SelectedProduct = Products.FirstOrDefault(x => x.Int == (int)Order.Product);
             Programs = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Program>());
@@ -354,6 +355,9 @@ namespace SAKD.ViewModels
                     break;
                 case Enums.Status.S81:
                     Order.Status = Enums.Status.S12;
+                    break;
+                case Enums.Status.S12:
+                    Order.Status = Order.IsClientAccepted == false ? Enums.Status.CancelledByClient : Enums.Status.S17;
                     break;
                 default:
                     Order.Status = Order.Status + 1;
