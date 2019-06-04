@@ -1,4 +1,6 @@
-﻿namespace SAKD.Views
+﻿using SAKD.ViewModels;
+
+namespace SAKD.Views
 {
     /// <summary>
     /// Interaction logic for LoginPage.xaml
@@ -8,6 +10,7 @@
         public LoginPage()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel(this);
         }
     }
 }

@@ -17,9 +17,11 @@ namespace SAKD.ViewModels
         }
 
         public ICommand LoginCommand { get; set; }
+        private LoginPage _view;
 
-        public LoginViewModel()
+        public LoginViewModel(LoginPage view)
         {
+            _view = view;
             Username = "manager";
             Password = "manager";
             LoginCommand = new Command(Login, CanExecuteCommand);
@@ -35,6 +37,7 @@ namespace SAKD.ViewModels
             
             var mainWindow = new MainWindow();
             mainWindow.Show();
+            _view.Close();
         }
     }
 }
