@@ -78,8 +78,7 @@
             <Button Content="Қосу" Background="Green" Margin="5" Width="70" Command="{Binding AddCommand}"/>
             <Button Content="Іздеу" Margin="5" Width="70" Command="{Binding SearchCommand}"/>
             <Button Content="Өзгерту" Margin="5" Width="70" Command="{Binding EditCommand}"/>
-            <Button Content="Шығару" Margin="5" Width="70"/>
-            <Button Content="Жаңалау" Margin="5" Width="70"/>
+            <Button Content="Жаңалау" Margin="5" Width="80" Command="{Binding UpdateCommand}"/>
         </StackPanel>
     </Grid>
 </controls:MetroWindow>

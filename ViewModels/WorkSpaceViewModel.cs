@@ -65,6 +65,7 @@ namespace SAKD.ViewModels
         public ICommand FindCommand { get; set; }
         public ICommand AddCommand { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand UpdateCommand { get; set; }
 
         public WorkSpaceViewModel()
         {
@@ -73,6 +74,12 @@ namespace SAKD.ViewModels
             FindCommand = new Command(Find, CanExecuteCommand);
             AddCommand = new Command(Add, CanExecuteCommand);
             EditCommand = new Command(Edit, CanExecuteCommand);
+            UpdateCommand = new Command(Update, CanExecuteCommand);
+        }
+
+        private void Update(object parameter)
+        {
+            LoadOrders(SelectedNode.Int);
         }
 
         private void Edit(object parameter)
