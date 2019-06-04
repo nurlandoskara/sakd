@@ -8,5 +8,6 @@
         public double AdditionalSalary { get; set; }
         public int WorkExperience { get; set; }
         public string SalaryBank { get; set; }
+        public double TotalSalary => MainSalary + AdditionalSalary;
     }
 }

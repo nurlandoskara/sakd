@@ -53,9 +53,9 @@ namespace SAKD.ViewModels
 
         private void Save(object parameter)
         {
-            Address.Region = SelectedRegion;
-            Address.Area = SelectedArea;
-            Address.City = SelectedCity;
+            Address.RegionId = SelectedRegion.Id;
+            Address.AreaId = SelectedArea.Id;
+            Address.CityId = SelectedCity.Id;
             _view.Close();
             OnClose.Invoke(this,
                 new CustomEventArgs.OnCloseFilterViewEventArgs { IsApplied = true });

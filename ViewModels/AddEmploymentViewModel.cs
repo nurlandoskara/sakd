@@ -47,7 +47,7 @@ namespace SAKD.ViewModels
 
         private void Save(object parameter)
         {
-            Employment.Industry = SelectedIndustry;
+            Employment.IndustryId = SelectedIndustry.Id;
             _view.Close();
             OnClose.Invoke(this,
                 new CustomEventArgs.OnCloseFilterViewEventArgs { IsApplied = true });

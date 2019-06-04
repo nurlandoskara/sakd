@@ -5,7 +5,7 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  mc:Ignorable="d"
-        WindowStyle="ToolWindow" WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen"
         Title="Адрес қосу" Height="279.333" Width="600">
     <StackPanel>
     <Grid>

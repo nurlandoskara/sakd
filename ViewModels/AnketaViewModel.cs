@@ -227,17 +227,13 @@ namespace SAKD.ViewModels
         public bool StatusResponse
         {
             get => _status81;
-            set
-            {
-                SetProperty(ref _status81, value);
-                Offer();
-            }
+            set => SetProperty(ref _status81, value);
         }
 
         private void Offer()
         {
             Offers = new ObservableCollection<Offer>();
-            for (var i = 6; i < 60; i+=3)
+            for (var i = 12; i < 60; i+=3)
             {
                 Offers.Add(new Offer
                 {
@@ -271,6 +267,30 @@ namespace SAKD.ViewModels
             Status1 = Order.Status == Enums.Status.S1;
             Status2 = Order.Status == Enums.Status.S2;
             Status81 = Order.Status == Enums.Status.S81;
+            if (Status81)
+            {
+                var monthly = (Order.RequestSum / Order.Months) / Order.Client.Job.TotalSalary * 100;
+                if (monthly > 50)
+                {
+                    MessageBox.Show("Несиеден бас тартылды! Клиенттің ай сайынғы табысы жеткіліксіз");
+                    Order.Status = Enums.Status.Cancelled;
+                }
+                else if (Order.Client.Job.WorkExperience < 6)
+                {
+                    MessageBox.Show("Несиеден бас тартылды! Клиенттің еңбек өтілі жеткіліксіз");
+                    Order.Status = Enums.Status.Cancelled;
+                }
+                else if (Order.Client.AdditionalInfo.IsAlcohol || Order.Client.AdditionalInfo.IsAnotherPerson || Order.Client.AdditionalInfo.IsInadequate)
+                {
+                    MessageBox.Show("Несиеден бас тартылды! Клиенттің еңбек өтілі жеткіліксіз");
+                    Order.Status = Enums.Status.Cancelled;
+                }
+
+                if (Order.Status == Enums.Status.Cancelled)
+                {
+                    Offer();
+                }
+            }
             Status12 = Order.Status == Enums.Status.S12;
             StatusResponse = Status81 || Status12;
             Products = new ObservableCollection<EnumListItem>(EnumHelper.EnumList<Enums.Product>());
@@ -345,7 +365,7 @@ namespace SAKD.ViewModels
             NextCommand = new Command(Next, CanExecuteCommand);
             AddFileCommand = new Command(AddFileVoid, CanExecuteCommand);
         }
-
+        
         private void Next(object parameter)
         {
             switch (Order.Status)
@@ -358,6 +378,15 @@ namespace SAKD.ViewModels
                     break;
                 case Enums.Status.S12:
                     Order.Status = Order.IsClientAccepted == false ? Enums.Status.CancelledByClient : Enums.Status.S17;
+                    break;
+                case Enums.Status.S17:
+                    Order.Status = Enums.Status.Accepted;
+                    break;
+                case Enums.Status.Cancelled:
+                    if (SelectedOffer != null)
+                    {
+                        Order.Status = Enums.Status.S12;
+                    }
                     break;
                 default:
                     Order.Status = Order.Status + 1;
