@@ -107,7 +107,7 @@ namespace SAKD.ViewModels
             if (!(sender is BaseViewModel vm)) return;
             vm.OnClose -= ViewModel_OnClose;
             if (!args.IsApplied) return;
-            LoadOrders(SelectedNode.Int);
+            if(SelectedNode != null) LoadOrders(SelectedNode.Int);
         }
 
         private void LoadOrders(int status)
